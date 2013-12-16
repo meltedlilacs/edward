@@ -1,1 +1,0 @@
-<h2 style="font-style: italic; text-align: right;">Here is some default text!<u>this is&nbsp;<em>slightly<strong>more<span style="font-size:12px">complex<span style="color:#A52A2A">would you not<span style="background-color:#006400">agree???</span></span></span></strong></em></u></h2>
