@@ -1,0 +1,280 @@
+/**********GLOBAL STYLING**********
+
+/* the page has this background */
+body	{
+	background-image: url(https://lh6.googleusercontent.com/-Fapw79OZLK0/UkZcTSFBCII/AAAAAAAAAiE/UGApP7LoWeU/w896-h689-no/scratched-metal-background1.jpg);
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	}
+
+/* bullet points are images (defined in next rule) */
+ul	{
+	list-style-type: none;
+	}
+
+/* bullet points are defined as background images because it allows more percise positioning */
+li	{
+	background-image: url("gearicon2.png");
+	background-repeat: no-repeat;
+	background-position: 0 0.1em;
+	padding-left: 1em;
+	}
+
+/* most images should be of a small size */
+img	{
+	width: 250px;
+	height: 250px;
+	margin: 1em;
+	}
+
+/* important things are a different color */
+b, .important	{
+	color: rgb(100, 100, 100);
+	}
+
+/* table element styling is similar to asides */
+td, th	{
+	/* for background color see colorscheme3 */
+	text-align: center;
+	padding: 1em;
+	}
+
+/* no border for frames to other pages resizing is pratical for user */
+iframe	{
+	border: none;
+	resize: both;
+	}
+
+/**********ASSORTED CLASSES**********/
+
+/* add a dropshadow for a 3d effect */
+.threed, .aside, .content, td, th	{
+	/*box-shadow: 10px 10px 5px #888888;*/
+	/*dont know if i want this*/
+	}
+
+/* adds a metalic border akin to a frame to any element */
+.pictureframe	{
+	padding: 21px;
+    border: 1px solid #D6D6D6;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 2px 3px rgb(180, 180, 180), 0 0 77px #D6D6D6 inset, 5px -5px 44px rgb(180, 180, 180) inset;
+	}
+
+/* emphasize text */
+.important	{
+	/* see b rule above */
+	}
+
+/* text positioning */
+
+.aligntextcenter	{
+	text-align: center;
+	}
+
+.aligntextright	{
+	text-align: right;
+	}
+
+.aligntextleft	{
+	text-align: left;
+	}
+
+/* element positioning */
+
+.alignelementright	{
+	margin-left: 1em;
+	float: right;
+	}
+
+.alignelementleft	{
+	margin-right: 1em;
+	float: left;
+	}
+
+/* size constraints, used mainly for images, which are normally 250px/250px */
+
+.smallsquare	{
+	width: 175px;
+	height: 175px;
+	}
+
+.normalwidth, .normalsize	{
+	width: auto;
+	}
+
+.normalheight, .normalsize	{
+	height: auto;
+	}
+
+/* callout triangle */
+.triangle	{
+	z-index: -1;
+	position: absolute;
+	left: 11.75em;
+    margin: 0;
+	margin-top: -1.5em;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid rgb(175, 175, 200);
+    padding: 0;
+	width: 0;
+	height: 0;
+	}
+
+/* how not to be seen */
+.invisible	{
+	display: none;
+	}
+
+/* self explanitory */
+.nobackground	{
+	background: none;
+	}
+/**********STYLING OF colorscheme1 PAGE ELEMENTS**********/
+
+/* styling of colorscheme1 page parts */
+.colorscheme1	{
+	padding: 1em;
+	margin: 1em;
+	background-color: rgb(175, 175, 200);
+	}
+
+/* all the headers get a background and clear everything */
+.colorscheme1 h1, .colorscheme1 h2, .colorscheme1 h3, .colorscheme1 h4, .colorscheme1 h5, .colorscheme1 h6	{
+	background-color: rgb(200, 200, 225);
+	padding: 0.25em;
+	clear: both;
+	}
+
+/**********STYLING OF colorscheme2 PAGE ELEMENTS**********/
+
+.colorscheme2	{
+	font-weight: bold;
+	font-family: Sans-Serif;
+	font-size: 1.5em;
+	}
+
+.colorscheme2 a	{
+	color: white;
+	text-decoration: none;
+	}
+
+.colorscheme2 h1, .colorscheme2 h2, .colorscheme2 h3, .colorscheme2 h4, .colorscheme2 h5, .colorscheme2 h6, .colorscheme2 .heading, .colorscheme2 .subheading	{
+	}
+
+.colorscheme2 h1, .colorscheme2 h2, .colorscheme2 h3, .colorscheme2 h4, .colorscheme2 h5, .colorscheme2 h6, .colorscheme2 .heading	{
+	}
+
+.colorscheme2 .subheading	{
+	background: rgb(0, 70, 150);
+	}
+
+.colorscheme2 .heading:hover, .colorscheme2 .subheading:hover	{
+	}
+
+/**********STYLING OF colorscheme3 PAGE ELEMENTS**********/
+
+.colorscheme3, td, th	{
+	background-color: rgb(200, 200, 225);
+	}
+
+/**********STYLING OF colorscheme4 PAGE ELEMENTS**********/
+.colorscheme4	{
+	background: rgba(255, 255, 255, 0.5);
+	}
+
+/**********POSITIONING OF CONTENT ELEMENTS**********/
+
+/* general positioning */
+.content	{
+	z-index: -10;
+	padding: 1em;
+	margin: 1em;
+	margin-top: 0;
+	position: absolute;
+	left: 14em;
+	right: 0;
+	}
+
+/* no extra space at top of pages */
+.content p:first-child, .content h1:first-child, .content h2:first-child, .content h3:first-child, .content h4:first-child, .content h5:first-child, .content h6:first-child	{
+	margin-top: 0;
+	}
+
+/**********POSITIONING OF MENU ELEMENTS**********/
+
+.menu	{
+	position: fixed;
+	}
+
+.menu img	{
+	display: none;
+	margin-top: 0;
+	margin-bottom: -0.35em;
+	margin-left: -1.5em;
+	margin-right: 0.5em;
+	width: 1em;
+	height: 1.25em
+	}
+
+.menu ul	{
+	margin: 0;
+	padding: 0;
+	font-size: 0.75em;
+	}
+
+.menu li	{
+	padding: 0;
+	list-style: none;
+	background-image: none;
+	}
+ 
+.menu .heading li	{
+	width: 12em;
+	}
+
+.menu .subheading li	{
+	width: 8em;
+	}
+
+.menu a	{
+	display: block;
+	padding: 0.5em;
+	padding-left: 2em;
+	}
+
+.menu li:hover	{
+	background: rgb(0, 70, 150);
+	position: relative;
+	}
+
+.menu li:hover img	{
+	display: inline;
+	}
+
+.menu .subheading	{
+    display: none;
+	position: absolute;
+    left: 10em;
+	top: 0;
+	}
+
+.menu li:hover .subheading	{
+    display: block;
+	}
+
+.menu a:hover	{
+	background: rgba(200, 200, 200, 0.5);
+	}
+
+/**********POSITIONING OF ASIDE ELEMENTS**********/
+
+/* general positioning */
+.aside	{
+	float: right;
+	width: 50%;
+	margin: 1em;
+	padding: 1em;
+	}
