@@ -4,7 +4,7 @@ cd /home/gabriel/Documents/Programming/git/edward
 
 HOST='members.cruzio.com'
 USER='laovel'
-PASSWD=$(more password)
+PASSWD=$1
 
 ftp -n -v $HOST << EOT
 ascii

@@ -182,7 +182,7 @@ iframe	{
 
 /**********STYLING OF colorscheme4 PAGE ELEMENTS**********/
 .colorscheme4	{
-	background: rgba(255, 255, 255, 0.5);
+	background: rgba(255, 255, 255, 0.4);
 	}
 
 /**********POSITIONING OF CONTENT ELEMENTS**********/
@@ -264,11 +264,11 @@ iframe	{
 .menu li:hover .subheading	{
     display: block;
 	}
-
+/*
 .menu a:hover	{
 	background: rgba(200, 200, 200, 0.5);
 	}
-
+*/
 /**********POSITIONING OF ASIDE ELEMENTS**********/
 
 /* general positioning */

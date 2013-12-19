@@ -5,7 +5,7 @@
 		<link rel="shortcut icon" href="https://lh6.googleusercontent.com/nlvWqgABeIvZokLrf-bAGCmt-PGvxq4KPuYzTQ7lRVo=s188-p-no"/>
 		<link type="text/css" rel="stylesheet" href="stylesheet.css">
 		<style>
-			.heading .edward	{
+			.heading .essay	{
 				display: inherit;
 				}
 		</style>
