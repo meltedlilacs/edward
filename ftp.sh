@@ -11,5 +11,8 @@ ascii
 user $USER $PASSWD
 prompt
 cd edward
+put edward_essay.php
+put index.php
+put menu.php
 bye
 EOT
