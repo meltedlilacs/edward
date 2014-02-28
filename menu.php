@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-	<head>
-		<link type="text/css" rel="stylesheet" href = "stylesheet.css">
-	</head>
-	<body>
+
 		<div class="menu colorscheme2">
 			<ul class="heading">
 				
 				<li>
-					<span class="colorscheme4 nobackground edward"><a href="index.php"><img src="https://lh4.googleusercontent.com/-9yyhKSCh1BU/UkZeRSj38AI/AAAAAAAAAiY/2360cmbBAaE/w500-h663-no/roboticon.png"/>EDWARD</a></span>
+					<span class="colorscheme4 nobackground edward"><a href="index.php"><img src="roboticon.png"/>EDWARD</a></span>
 				</li>
 				<span class="triangle invisible edward"></span>
 				
@@ -22,4 +18,3 @@
 				<span class="triangle invisible gabriel"></span>
 			</ul>
 		</div>
-	</body>

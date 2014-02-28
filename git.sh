@@ -4,4 +4,4 @@ git add .
 DATE=$(date)
 git commit -m "$DATE"
 git push
-./ftp.sh $1
+#./ftp.sh $1

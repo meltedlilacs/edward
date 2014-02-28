@@ -2,7 +2,7 @@
 
 /* the page has this background */
 body	{
-	background-image: url(https://lh6.googleusercontent.com/-Fapw79OZLK0/UkZcTSFBCII/AAAAAAAAAiE/UGApP7LoWeU/w896-h689-no/scratched-metal-background1.jpg);
+	background-image: url(scratched-metal.jpg);
 	background-size: 100% 100%;
 	background-attachment: fixed;
 	}
@@ -14,7 +14,7 @@ ul	{
 
 /* bullet points are defined as background images because it allows more percise positioning */
 li	{
-	background-image: url("gearicon2.png");
+	background-image: url("gearicon.png");
 	background-repeat: no-repeat;
 	background-position: 0 0.1em;
 	padding-left: 1em;
