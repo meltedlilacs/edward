@@ -18,3 +18,5 @@
 				<span class="triangle invisible gabriel"></span>
 			</ul>
 		</div>
+		<a href="http://makerfaire.com" target="_blank" id="badge">
+    <img src="http://makerfaire.files.wordpress.com/2013/12/mf14ba_badge_150.png" alt="Maker Faire Bay Area 2014" /></a>

@@ -20,7 +20,7 @@
 			<p>This is a robot that I built. With alot of help. It took me close to a year to build, not counting the time I took learning to program and designing in my head. It performs a function, and performs it relatively well. But it is not done. I doubt it will ever be done. This website is a continuation of this mammoth project. This website in itself is a project. <span class="important">EDWARD</span> is a project of projects. Welcome to one such project.</p>
 			<p><b>Note:</b> The name of my robot has nothing to do with vampires. I have never read/watched those books/movies and I have no intention to. I like acroynms and I like making up acroynms. I have nothing against vampires in general, just the Twilight variety.</p>
 			<iframe width="560" height="315" src="http://www.youtube.com/embed/QmvR7w3AyIg" allowfullscreen></iframe>
-			<p>Included below is a brief summery of my process to build the robot. For a more in-depth look at my project, please view my <a href = "essay.php">essay</a>.</p>
+			<p>Included below is a brief summery of my process to build the robot. For a more in-depth look at my project, please view my <a href="edward_essay.php">essay</a>.</p>
 			<h2>The Body of The Robot</h2>
 			<p>My original idea for the body of the robot was to laser-cut it out of compressed wood board at a new business downtown called <a href="http://www.makersfactory.com">Makers' Factory</a> where one can use all sorts of proto-typing machines, such as a laser-cutter. I designed a slot system to hold the sides together.</p>
 			<img alt="Laser Cut Robot Body Design" src="https://lh6.googleusercontent.com/XsSq4iRetPZ5mafKX3us_wqt6GJMK0JEu6pz_GuYok4=w229-h227-p-no"/>
@@ -31,7 +31,7 @@
 			<p>I installed the various electronics and other components into my robot the next day.</p>
 			<img alt="My Robot EDWARD" src="https://lh6.googleusercontent.com/nlvWqgABeIvZokLrf-bAGCmt-PGvxq4KPuYzTQ7lRVo=s188-p-no"/>
 			<p><span class="important">EDWARD</span>'s brain, the Arduino Uno is a microcontroller (electronics prototyping platform) that is intended for artists, designers and hobbyists and so is easy to use in many applications, such as building robots.</p>
-			<img alt="The Arduino Uno" src="http://store.arduino.cc/ww/bmz_cache/1/1dc367f27fa91c37d3cd4bf98f30c032.image.550x550.jpg"/>
+			<img alt="The Arduino Uno" src="https://lh4.googleusercontent.com/-B4srAObCJbY/Ukd7eaOaiMI/AAAAAAAAA0s/I29RcCK9Vkc/s553-no/arduinoUno.jpg"/>
 			<p><span class="important">EDWARD</span>'s eyes/ears, the ultrasonic ping sensor measures distance using sonar. An ultrasonic pulse is transmitted from the unit and the distance to the nearest object can be determined by measuring the time required for the echo to return.</p>
 			<img  alt="The Ultrasonic Ping))) Sensor" src="http://www.parallax.com/sites/default/files/styles/full-size-product/public/28015_0.png?itok=_PnhW7fv"/>
 			<p><span class="important">EDWARD</span>'s neck is a type of motor that can be accurately controlled by a source such as a microcontroller. This motor is small, light and strong enough to turn the ping sensor so that it can rotate.</p>

@@ -1,9 +1,13 @@
-/**********GLOBAL STYLING**********
+/**********GLOBAL STYLING**********/
+
+html, body {
+  min-height: 100%;
+  }
 
 /* the page has this background */
 body	{
 	background-image: url(scratched-metal.jpg);
-	background-size: 100% 100%;
+	background-size: cover;
 	background-attachment: fixed;
 	}
 
@@ -277,4 +281,14 @@ iframe	{
 	width: 50%;
 	margin: 1em;
 	padding: 1em;
+	}
+
+/**********MAKERS FAIRE BADGE**********/
+#badge {
+	position: fixed;
+	bottom: 0;
+	}
+#badge img {
+	width: 175px;
+	height: 175px;
 	}
