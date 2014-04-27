@@ -1,7 +1,9 @@
 /***************************************
+ probably functional
  release notes:
  -fixed zero values of motors to 90,
   not 0
+ -reverted whichWay to version 3.0
 ***************************************/
 
 // -1 = null; 0 = front; 1 = back; 2 = left; 3 = right
@@ -13,7 +15,7 @@
 #include <Servo.h>  // for motor
 
 Robot Edward; // only instance used by main
-int rTurn = 770;
+int rTurn = 760;
 int lTurn = 690;
 int moveTime = 2240;
 
@@ -23,10 +25,9 @@ void setup()  {
   // is called before the arduino functions work
   // ping, head motor, l motor, r motor
   Edward.start(7, 9, 3, 11);
-  delay(100);
   Edward.Wheels.stop();
   Edward.Neck.write(90);
-  delay(500);
+  delay(100);
   // scan side behind robot. only needs to be done once
   // because every other time the robot has alreay moved
   // and so knows what is behind itself. This is in setup()
@@ -34,19 +35,19 @@ void setup()  {
   Edward.Wheels.turnRight();
   delay(rTurn * 2);
   Edward.Wheels.stop();
-  delay(500);
+  delay(100);
   // average five values for ping sensor
   byte dist[5] = {0, 0, 0, 0, 0};
   Edward.Neck.write(90);
   for(byte i = 0; i < 5; i++)  {
     dist[i] = Edward.Sensor.distance();
-    delay(100);
+    delay(50);
     }
   byte ave = average(dist);
   if(ave > 0 && ave < 12)  {
     Edward.location()->setWall(Edward.backOf());
     }
-  delay(500);
+  delay(100);
   Edward.Wheels.turnRight();
   delay(rTurn * 2);
   Edward.Wheels.stop();
@@ -120,7 +121,7 @@ void loop()  {
     debug("going left");
     Edward.turnLeft();
     Edward.Wheels.turnLeft();
-    delay(525);
+    delay(lTurn);
     Edward.Wheels.stop();
     Edward.moveForward();
     Edward.Wheels.moveForward();
