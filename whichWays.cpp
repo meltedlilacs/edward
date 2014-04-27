@@ -1,4 +1,5 @@
 #include "whichWays.h"
+#include "debug.h" // what could this be used for?
 
 /******************************
  returns most efficient path
@@ -9,6 +10,7 @@
 // currentRoute[i][2] = next move
 
 byte whichWay(Robot& aRobot)  {
+  debug("in whichWay");
   // byte bestCost = abs(aRobot.x() - aRobot.endX()) + abs(aRobot.y() - aRobot.endY());
   byte bestCost = 26;
   byte bestFirstMove = 4;
@@ -65,5 +67,6 @@ byte whichWay(Robot& aRobot)  {
         }
       }
     }
+  debug("at whichWay end");
   return bestFirstMove;
   }

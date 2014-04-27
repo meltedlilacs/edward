@@ -9,8 +9,8 @@
 
 // pass the pin numbers to be used
 void Locomotion::start(byte Lpin, byte Rpin)  {
-  Lzero = 0;
-  Rzero = 0;
+  Lzero = 90;
+  Rzero = 90;
   
   if(Lzero < Rzero)  {
     LspeedDiff = Rzero - Lzero;

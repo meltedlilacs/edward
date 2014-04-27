@@ -1,12 +1,8 @@
 /***************************************
  release notes:
- -New algorithm to help with path
-  retracing. will choose already walked
-  path over new one.
- -new function, debug(). outputs to
-  Serial and waits for any response
-  set constant DEBUG to true for
-  it to work (in debug.cpp)
+ -fixed zero values of motors to 90,
+  not 0
+  
 ***************************************/
 
 // -1 = null; 0 = front; 1 = back; 2 = left; 3 = right
@@ -79,7 +75,8 @@ void loop()  {
   
   // get best route
   byte nextSq = whichWay(Edward);
-
+  debug("nextSq: " + nextSq);
+  
   // am i backtracking?
   if(nextSq == 2)  {
     debug("backtracking");
