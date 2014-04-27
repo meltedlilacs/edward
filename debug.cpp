@@ -5,7 +5,7 @@
  awaits for any type of response
 *********************************/
 
-const boolean DEBUG = true;
+const boolean DEBUG = false;
 
 void debug(String print_this) {
   if(DEBUG) {

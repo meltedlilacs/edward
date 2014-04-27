@@ -15,17 +15,17 @@ void scanWalls(Robot& aRobot)  {
   
   // reset head
   aRobot.Neck.write(90);
-  delay(250);
+  delay(100);
   
   // if left of robot has not been scanned, scan it
   if(position->getDeadEnd(aRobot.leftOf()) != true && position->getWall(aRobot.leftOf()) != true)  {
     // average three values for ping sensor
     byte dist[5] = {0, 0, 0, 0, 0};
     aRobot.Neck.write(4);
-    delay(500);
+    delay(100);
     for(byte i = 0; i < 5; i++)  {
       dist[i] = aRobot.Sensor.distance();
-      delay(100);
+      delay(50);
       }
     byte ave = average(dist);
     if(ave > minDist && ave < maxDist)  {
@@ -52,10 +52,10 @@ void scanWalls(Robot& aRobot)  {
     // average three values for ping sensor
     byte dist[5] = {0, 0, 0, 0, 0};
     aRobot.Neck.write(176);
-    delay(500);
+    delay(100);
     for(byte i = 0; i < 5; i++)  {
       dist[i] = aRobot.Sensor.distance();
-      delay(100);
+      delay(50);
       }
     byte ave = average(dist);
     if(ave > minDist && ave < maxDist)  {
@@ -82,10 +82,10 @@ void scanWalls(Robot& aRobot)  {
     // average three values for ping sensor
     byte dist[5] = {0, 0, 0, 0, 0};
     aRobot.Neck.write(90);
-    delay(500);
+    delay(100);
     for(byte i = 0; i < 5; i++)  {
       dist[i] = aRobot.Sensor.distance();
-      delay(100);
+      delay(50);
       }
     byte ave = average(dist);
     if(ave > minDist && ave < maxDist)  {
@@ -108,9 +108,9 @@ void scanWalls(Robot& aRobot)  {
     }
   
   // reset head
-  delay(250);
+  delay(100);
   aRobot.Neck.write(90);
-  delay(250);
+  delay(100);
     
   // this square has been scanned
   position->mapped = true; // this square has now been scanned
