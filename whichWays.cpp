@@ -10,63 +10,44 @@
 // currentRoute[i][2] = next move
 
 byte whichWay(Robot& aRobot)  {
-  debug("in whichWay");
-  // byte bestCost = abs(aRobot.x() - aRobot.endX()) + abs(aRobot.y() - aRobot.endY());
-  byte bestCost = 26;
-  byte bestFirstMove = 4;
-  byte currentFirstMove = 4;
-  byte currentRoute[25][3];
-  byte currentCost = 0;
-  byte currentNode = 0;
-  int finishedNode = -1;
-  for(byte i = 0; i < 25; i++)  {
-    for(byte j = 0; j < 3; j++)  {
-      currentRoute[i][j] = 6;
-      }
-    }
+  debug("whichWay start");
+  Square* position = aRobot.location(); // conveince variable
+  byte nextSq = 4;
   
-  currentRoute[currentNode][0] = aRobot.x();
-  currentRoute[currentNode][1] = aRobot.y();
-  while(finishedNode < 25)  { // while all posiblities on all nodes haven't been tried
-    int tempCurrentMove = currentRoute[currentNode][2] == 6 ? -1 : currentRoute[currentNode][2];
-    int tempLastMove = tempCurrentMove;
-    for(; tempCurrentMove < 4; tempCurrentMove++)  {
-      if((aRobot.Array[currentRoute[currentNode][0]][currentRoute[currentNode][1]].getWall(tempCurrentMove) == false) && (tempCurrentMove == (currentRoute[currentNode - 1][2] < 2 ? currentRoute[currentNode - 1][2] == 0 ? 0 : 1 : currentRoute[currentNode - 1][2] == 2 ? 2 : 3)))  {
-        for(int tempTempCurrentMove; tempTempCurrentMove < 4; tempTempCurrentMove++)  {
-          if((aRobot.Array[currentRoute[currentNode][0]][currentRoute[currentNode][1]].getWall(tempTempCurrentMove) == false) && (tempTempCurrentMove == (currentRoute[currentNode - 1][2] < 2 ? currentRoute[currentNode - 1][2] == 0 ? 0 : 1 : currentRoute[currentNode - 1][2] == 2 ? 2 : 3)))  {
-            if(finishedNode == currentNode - 1)  {
-              finishedNode++;
-              }
-            }
-        currentRoute[currentNode][2] = tempCurrentMove;
-        currentNode++;
-        currentCost++;
-        break;
-        }
-      }
-      if(tempCurrentMove == tempLastMove || tempCurrentMove > 3)  {
-        currentRoute[currentNode][2] = 6;
-        currentNode--;
-        currentCost--;
-        }
-      if(currentRoute[currentNode][0] == aRobot.endX() && currentRoute[currentNode][1] == aRobot.endY())  {
-        if(currentCost < bestCost)  {
-          bestCost = currentCost;
-          bestFirstMove = currentRoute[0][2];
-          }
-        currentRoute[currentNode][2] = 6;
-        currentNode--;
-        currentCost--;
-        }
-      for(byte i = 0; i < 25; i++)  {
-        if(currentRoute[i][0] == currentRoute[currentNode][0] && currentRoute[i][1] == currentRoute[currentNode][1])  {
-          currentRoute[currentNode][2] = 6;
-          currentNode--;
-          currentCost--;
-          }
-        }
-      }
+  // if there is more than one possiblity, instead use pythagorean
+  // theorem to calculate shortest path.
+  // this calculates the distance between the endpoint and one square
+  // in every direction to find the shortest route to take
+  byte distance[4] = {0, 0, 0, 0}; // distance to goal from one square away in any direction       
+  // the square of the difference in the y axis of the end point and one square above current position plus
+  // the square of the difference in the x axis of the end point and one square above current position
+  distance[0] = pow(abs(abs(aRobot.endY()) - (abs(aRobot.y()) + 1)), 2) + pow(abs(abs(aRobot.endX()) - abs(aRobot.x())), 2);
+  // the square of the difference in the y axis of the end point and one square to the right current position plus
+  // the square of the difference in the x axis of the end point and one square to the right current position
+  distance[1] = pow(abs(abs(aRobot.endY()) - abs(aRobot.y())), 2) + pow(abs(abs(aRobot.endX()) - (abs(aRobot.x()) + 1)), 2);
+  // the square of the difference in the y axis of the end point and one square below current position plus
+  // the square of the difference in the x axis of the end point and one square below current position
+  distance[2] = pow(abs(abs(aRobot.endY()) - (abs(aRobot.y()) - 1)), 2) + pow(abs(aRobot.endX()) - abs(aRobot.x()), 2);
+  // the square of the difference in the y axis of the end point and one square to the left current position plus
+  // the square of the difference in the x axis of the end point and one square to the left current position
+  distance[3] = pow(abs(abs(aRobot.endY()) - abs(aRobot.y())), 2) + pow(abs(abs(aRobot.endX()) - (abs(aRobot.x() - 1))), 2);
+  
+  // if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
+  if((nextSq == 4 || distance[0] < distance[nextSq]) && (position->getDeadEnd(0) != true) && (position->getWall(0) != true))  {
+    nextSq = 0;
     }
-  debug("at whichWay end");
-  return bestFirstMove;
+  // if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
+  if((nextSq == 4 || distance[1] < distance[nextSq]) && (position->getDeadEnd(1) != true) && (position->getWall(1) != true))  {
+    nextSq = 1;
+    }
+  // if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
+  if((nextSq == 4 || distance[2] < distance[nextSq]) && (position->getDeadEnd(2) != true) && (position->getWall(2) != true))  {
+    nextSq = 2;
+    }
+  // if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
+  if((nextSq == 4 || distance[3] < distance[nextSq]) && (position->getDeadEnd(3) != true) && (position->getWall(3) != true))  {
+    nextSq = 3;
+    }
+  debug("whichWay end");
+  return aRobot.intToDir(nextSq); 
   }

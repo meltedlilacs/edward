@@ -1,8 +1,7 @@
 /***************************************
+ probably functional
  release notes:
- -fixed zero values of motors to 90,
-  not 0
-  
+ -reverted whichWay
 ***************************************/
 
 // -1 = null; 0 = front; 1 = back; 2 = left; 3 = right
