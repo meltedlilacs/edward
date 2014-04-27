@@ -72,7 +72,7 @@ class Robot  {
     PingSensor Sensor;
     Servo Neck;
     Locomotion Wheels;
-    Square Array[5][5];
+    Square Array[5][5]; // map
     
     boolean moved;    
     
