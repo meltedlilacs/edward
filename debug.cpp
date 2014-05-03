@@ -8,11 +8,11 @@
 const boolean DEBUG = false;
 
 void debug(String print_this) {
-  if(DEBUG) {
   Serial.println(print_this);
-  while(Serial.available() <= 0) {
-    // waiting...
+  if(DEBUG) {
+    while(Serial.available() <= 0) {
+      // waiting...
+      }
+    Serial.read(); // get those bytes out of the inbox
     }
-  Serial.read(); // get those bytes out of the inbox
-  }
   }

@@ -9,6 +9,7 @@
 ****************************************/
 
 void scanWalls(Robot& aRobot)  {
+  const unsigned int head_turn_delay = 300;
   const byte maxDist = 12; // the range between which a wall is adjacent to the robot
   const byte minDist = 0; // (in inches)
   Square* position = aRobot.location(); // conveince variable
@@ -21,8 +22,8 @@ void scanWalls(Robot& aRobot)  {
   if(position->getDeadEnd(aRobot.leftOf()) != true && position->getWall(aRobot.leftOf()) != true)  {
     // average three values for ping sensor
     byte dist[5] = {0, 0, 0, 0, 0};
-    aRobot.Neck.write(4);
-    delay(100);
+    aRobot.Neck.write(10);
+    delay(head_turn_delay);
     for(byte i = 0; i < 5; i++)  {
       dist[i] = aRobot.Sensor.distance();
       delay(50);
@@ -52,7 +53,7 @@ void scanWalls(Robot& aRobot)  {
     // average three values for ping sensor
     byte dist[5] = {0, 0, 0, 0, 0};
     aRobot.Neck.write(176);
-    delay(100);
+    delay(head_turn_delay);
     for(byte i = 0; i < 5; i++)  {
       dist[i] = aRobot.Sensor.distance();
       delay(50);
@@ -82,7 +83,7 @@ void scanWalls(Robot& aRobot)  {
     // average three values for ping sensor
     byte dist[5] = {0, 0, 0, 0, 0};
     aRobot.Neck.write(90);
-    delay(100);
+    delay(head_turn_delay);
     for(byte i = 0; i < 5; i++)  {
       dist[i] = aRobot.Sensor.distance();
       delay(50);
@@ -108,7 +109,7 @@ void scanWalls(Robot& aRobot)  {
     }
   
   // reset head
-  delay(100);
+  delay(head_turn_delay);
   aRobot.Neck.write(90);
   delay(100);
     

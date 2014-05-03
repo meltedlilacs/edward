@@ -1,4 +1,4 @@
-#include "robot.h"
+  #include "robot.h"
 
 /**************************************************************************
  this class combines classes MotorizedSensor, Locomotion, Zigbee and Map
@@ -17,12 +17,12 @@ void Robot::start(byte tempPingPin, byte tempMotorPin, byte tempLpin, byte tempR
   backtracking = false;
   xPos = 0;
   yPos = 0;
-  goals[0][0] = xPos;
-  goals[0][1] = yPos;
+  goals[0][0] = 0;
+  goals[0][1] = 0;
   goals[1][0] = 1;
   goals[1][1] = 4;
-  goals[2][0] = xPos;
-  goals[2][1] = yPos;
+  goals[2][0] = 0;
+  goals[2][1] = 0;
   currentGoal = 1;
   facing = 0;
   }

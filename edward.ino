@@ -4,6 +4,9 @@
  -fixed zero values of motors to 90,
   not 0
  -reverted whichWay to version 3.0
+ -added timing variables to scanWalls
+ -debug still prints to serial when
+  DEBUG == false, but it won't wait
 ***************************************/
 
 // -1 = null; 0 = front; 1 = back; 2 = left; 3 = right
@@ -27,7 +30,6 @@ void setup()  {
   Edward.start(7, 9, 3, 11);
   Edward.Wheels.stop();
   Edward.Neck.write(90);
-  delay(100);
   // scan side behind robot. only needs to be done once
   // because every other time the robot has alreay moved
   // and so knows what is behind itself. This is in setup()
@@ -38,7 +40,6 @@ void setup()  {
   delay(100);
   // average five values for ping sensor
   byte dist[5] = {0, 0, 0, 0, 0};
-  Edward.Neck.write(90);
   for(byte i = 0; i < 5; i++)  {
     dist[i] = Edward.Sensor.distance();
     delay(50);

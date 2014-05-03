@@ -12,12 +12,10 @@
 byte whichWay(Robot& aRobot)  {
   debug("whichWay start");
   Square* position = aRobot.location(); // conveince variable
-  byte nextSq = 4;
+  byte nextSq = 4; // current option - 4 is bad
   
-  // if there is more than one possiblity, instead use pythagorean
-  // theorem to calculate shortest path.
-  // this calculates the distance between the endpoint and one square
-  // in every direction to find the shortest route to take
+  // use the pythagorean theorem to calculate the distance between the goal and all four squares adjecent to the robot
+  // then pick the one that shortens the distance to the goal the most that doesn't have a wall or doesn't lead to a dead end
   byte distance[4] = {0, 0, 0, 0}; // distance to goal from one square away in any direction       
   // the square of the difference in the y axis of the end point and one square above current position plus
   // the square of the difference in the x axis of the end point and one square above current position
