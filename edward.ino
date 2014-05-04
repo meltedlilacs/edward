@@ -58,13 +58,9 @@ void setup()  {
 
 void loop()  {
   debug("loop() top");
-  // has robot gotten to destination?
-  if(Edward.location() == Edward.endPosition())  {
-    debug("at destination");
-    delay(100);
-    Edward.Wheels.turnRight();
-    delay(rTurn * 4);
-    Edward.Wheels.stop();
+  // has robot gotten to all destinations?
+  if(Edward.isFinished())  {
+    debug("finished");
     while(true);
     }
   

@@ -67,6 +67,8 @@ class Robot  {
     
     void uTurn();
     
+    boolean isFinished();
+    
     boolean backtracking; // am i backtracking?
 
     PingSensor Sensor;
@@ -74,14 +76,16 @@ class Robot  {
     Locomotion Wheels;
     Square Array[5][5]; // map
     
-    boolean moved;    
+    boolean moved;
     
     private:
       byte xPos; // x coordinate
       byte yPos; // y coordinate
       byte goals[3][2];
       byte currentGoal;
+      byte numberGoals; // number of goals
       byte facing; // what direction am i facing?
+      boolean finished;
   };
 
 #endif

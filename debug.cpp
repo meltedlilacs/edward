@@ -5,7 +5,7 @@
  awaits for any type of response
 *********************************/
 
-const boolean DEBUG = false;
+const boolean DEBUG = true;
 
 void debug(String print_this) {
   Serial.println(print_this);

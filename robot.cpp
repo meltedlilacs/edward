@@ -25,6 +25,8 @@ void Robot::start(byte tempPingPin, byte tempMotorPin, byte tempLpin, byte tempR
   goals[2][1] = 0;
   currentGoal = 1;
   facing = 0;
+  finished = false;
+  numberGoals = 3;
   }
 
   
@@ -211,7 +213,7 @@ void Robot::moveForward()  {
   // if at destination, find next good destination
   while(location() == endPosition() || goals[currentGoal][0] < 0 || goals[currentGoal][1] < 0)  {
     currentGoal++;
-    if(currentGoal > 2)  {
+    if(currentGoal > numberGoals - 1)  { // minus one because currentGoal is zero indexed
       break;
       }
     }
@@ -256,4 +258,8 @@ void Robot::uTurn()  {
       facing = 1;
       break;
     }
+  }
+
+boolean Robot::isFinished() {
+  return finished;
   }
