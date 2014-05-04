@@ -1,5 +1,5 @@
 #!/bin/bash
 git add --all
 git commit
-git push origin master
+git push
 git push origin --tags
