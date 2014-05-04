@@ -18,9 +18,9 @@
 #include <Servo.h>  // for motor
 
 Robot Edward; // only instance used by main
-int rTurn = 750;
-int lTurn = 690;
-int moveTime = 2240;
+int rTurn = 900;
+int lTurn = 750;
+int moveTime = 2200;
 
 void setup()  {
   Serial.begin(9600);

@@ -27,7 +27,7 @@ void Locomotion::start(byte Lpin, byte Rpin)  {
     }
     
 void Locomotion::moveForward()  {
-  Lservo.write(117);
+  Lservo.write(175);
   Rservo.write(0);
   }
 

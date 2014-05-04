@@ -5,4 +5,4 @@
  awaits for any type of response
 *********************************/
 
-void debug(String print_this);
+void debug(String print_this, boolean important = false);
