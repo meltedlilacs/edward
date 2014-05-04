@@ -22,11 +22,23 @@ class Square  {
     // is a dead end
     void setDeadEnd(byte side);
     
-    // is a bad side?
+    // is a dead end?
     boolean getDeadEnd(byte side) const;
     
     // number of exitable sides
     byte getNumSides() const;
+    
+    // is mapped
+    void setSideMapped(byte side);
+    
+    // is mapped?
+    boolean getSideMapped(byte side) const;
+    
+    // square has been mapped
+    void setMapped();
+    
+    // square has been mapped?
+    boolean getMapped() const;
     
     // has been gone through
     void setGoneThrough(byte side);
@@ -34,12 +46,14 @@ class Square  {
     // has been gone through?
     boolean getGoneThrough(byte side) const;
     
-    boolean mapped; // has this square been scanned
-    boolean goneThrough[4]; // sides that have been gone through
   private:
     boolean wall[4]; // where walls are
     boolean deadEnd[4]; // where deadends are
     byte numSides; // number of viable sides
+    boolean sideMapped[4]; // sides that have been mapped
+    boolean mapped; // has this square been scanned
+    byte numMapped;
+    boolean goneThrough[4]; // sides that have been gone through
   };
   
 #endif

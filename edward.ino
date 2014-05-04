@@ -1,12 +1,8 @@
 /***************************************
  probably functional
  release notes:
- -fixed zero values of motors to 90,
-  not 0
- -reverted whichWay to version 3.0
- -added timing variables to scanWalls
- -debug still prints to serial when
-  DEBUG == false, but it won't wait
+ -added class map
+ -scanning is happier :)
 ***************************************/
 
 // -1 = null; 0 = front; 1 = back; 2 = left; 3 = right
