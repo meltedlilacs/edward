@@ -1,4 +1,5 @@
-  #include "robot.h"
+#include "robot.h"
+#include "debug.h"
 
 /**************************************************************************
  this class combines classes MotorizedSensor, Locomotion, Zigbee and Map
@@ -210,10 +211,18 @@ void Robot::moveForward()  {
       xPos--;
       break;
     }
+  if(location() == endPosition()) {
+    String debug_info = "at destination (" + String(xPos) + ", " + String(yPos) + ")";
+    debug(debug_info);
+    }
   // if at destination, find next good destination
   while(location() == endPosition() || goals[currentGoal][0] < 0 || goals[currentGoal][1] < 0)  {
     currentGoal++;
+    debug("current goal: " + String(currentGoal));
+    debug("numberGoals - 1: " + String((numberGoals - 1)));
     if(currentGoal > numberGoals - 1)  { // minus one because currentGoal is zero indexed
+      finished = true;
+      debug("at end");
       break;
       }
     }

@@ -18,7 +18,7 @@
 #include <Servo.h>  // for motor
 
 Robot Edward; // only instance used by main
-int rTurn = 760;
+int rTurn = 750;
 int lTurn = 690;
 int moveTime = 2240;
 
@@ -30,6 +30,7 @@ void setup()  {
   Edward.start(7, 9, 3, 11);
   Edward.Wheels.stop();
   Edward.Neck.write(90);
+  debug("program start");
   // scan side behind robot. only needs to be done once
   // because every other time the robot has alreay moved
   // and so knows what is behind itself. This is in setup()
@@ -58,12 +59,7 @@ void setup()  {
 
 void loop()  {
   debug("loop() top");
-  // has robot gotten to all destinations?
-  if(Edward.isFinished())  {
-    debug("finished");
-    while(true);
-    }
-  
+    
   // if the walls haven't been scanned, scan them
   if(Edward.location()->mapped == false)  {
     debug("scanning walls");
@@ -138,4 +134,10 @@ void loop()  {
     
   // the way came has been gone through
   Edward.location()->setGoneThrough(Edward.backOf());
+  
+  // has robot gotten to all destinations?
+  if(Edward.isFinished())  {
+    debug("finished");
+    while(true);
+    }
   }
