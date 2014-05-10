@@ -6,7 +6,7 @@
 *********************************/
 
 // 0 = no pausing, 1 = pause for important stuff, 2 = pause for everything
-const byte DEBUG = 1;
+const byte DEBUG = 2;
 
 void debug(String print_this, boolean important) {
   Serial.println(print_this);

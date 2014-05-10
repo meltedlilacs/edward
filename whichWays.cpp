@@ -10,7 +10,6 @@
 // currentRoute[i][2] = next move
 
 byte whichWay(Robot& aRobot)  {
-  debug("whichWay start");
   byte nextSq = 4; // current option - 4 is bad
   
   // use the pythagorean theorem to calculate the distance between the goal and all four squares adjecent to the robot
@@ -45,6 +44,5 @@ byte whichWay(Robot& aRobot)  {
   if((nextSq == 4 || distance[3] < distance[nextSq]) && (aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), 3) != true) && (aRobot.World.getWall(aRobot.x(), aRobot.y(), 3) != true))  {
     nextSq = 3;
     }
-  debug("whichWay end");
   return aRobot.intToDir(nextSq); 
   }

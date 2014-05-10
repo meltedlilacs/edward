@@ -27,12 +27,12 @@ void setup()  {
   Edward.start(7, 9, 3, 11, 750, 900, 2200);
   Edward.stop();
   Edward.Neck.write(90);
-  debug("program start");
+  debug("Press any key to start");
   // scan side behind robot. only needs to be done once
   // because every other time the robot has alreay moved
   // and so knows what is behind itself. This is in setup()
   // because it moves the wheels and so cannot be in scanWalls()
-  Edward.turnRight();
+  Edward.uTurn();
   delay(100);
   // average five values for ping sensor
   byte dist[5] = {0, 0, 0, 0, 0};
@@ -45,51 +45,42 @@ void setup()  {
     Edward.World.setWall(Edward.x(), Edward.y(), Edward.backOf());
     }
   delay(100);
-  Edward.turnRight();
-  
-  debug("setup() finished");
+  Edward.uTurn();
   }
 
 void loop()  {
-  debug("loop() top");
-    
   // if the walls haven't been scanned, scan them
   if(Edward.World.getMapped(Edward.x(), Edward.y()) == false)  {
-    debug("scanning walls");
     scanWalls(Edward);
     }
-  
+  debug("Walls at (" + String(Edward.x()) + ", " + String(Edward.y()) + "): [" + String(Edward.World.getWall(Edward.x(), Edward.y(), 0)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), 1)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), 2)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), 3)) + "]");
   // get best route
   byte nextSq = whichWay(Edward);
-  debug("nextSq: " + nextSq);
+  debug("Going in direction " + String(nextSq));
   
   // am i backtracking?
   if(nextSq == 2)  {
-    debug("backtracking");
+    debug("Now backtracking");
     Edward.backtracking = true;
     }
   
   // follow the best route
   // go forward
   if(nextSq == 0)  {
-    debug("going forward");
     Edward.moveForward();
     }
   // turn right
   if(nextSq == 1)  {
-    debug("going right");
     Edward.turnRight();
     Edward.moveForward();
     }
   // u turn
   if(nextSq == 2)  {
-    debug("going backwards");
     Edward.uTurn();
     Edward.moveForward();
     }
   // turn left
   if(nextSq == 3)  {
-    debug("going left");
     Edward.turnLeft();
     Edward.moveForward();
     }
@@ -99,17 +90,19 @@ void loop()  {
     Edward.World.setDeadEnd(Edward.x(), Edward.y(), Edward.backOf());
     // am i done backtracking?  
     if(Edward.World.getNumSides(Edward.x(), Edward.y()) > 1)  {
-      debug("done backtracking");
+      debug("No longer backtracking");
       Edward.backtracking = false;
       }
     }
-    
+  
+  debug("Now at (" + String(Edward.x()) + ", " + String(Edward.y()) + ")");
+
   // the way came has been gone through
   Edward.World.setGoneThrough(Edward.x(), Edward.y(), Edward.backOf());
   
   // has robot gotten to all destinations?
   if(Edward.isFinished())  {
-    debug("finished");
+    debug("Reached all goals");
     while(true);
     }
   }

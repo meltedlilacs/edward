@@ -201,17 +201,14 @@ void Robot::moveForward()  {
       break;
     }
   if(x() == endX() && y() == endY()) {
-    String debug_info = "at destination (" + String(xPos) + ", " + String(yPos) + ")";
-    debug(debug_info);
+    debug("Reached destination (" + String(xPos) + ", " + String(yPos) + ")");
     }
   // if at destination, find next good destination
   while((x() == endX() && y() == endY()) || goals[currentGoal][0] < 0 || goals[currentGoal][1] < 0)  {
     currentGoal++;
-    debug("current goal: " + String(currentGoal));
-    debug("numberGoals - 1: " + String((numberGoals - 1)));
+    debug("New goal: " + String(currentGoal));
     if(currentGoal > numberGoals - 1)  { // minus one because currentGoal is zero indexed
       finished = true;
-      debug("at end");
       break;
       }
     }
