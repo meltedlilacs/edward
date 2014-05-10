@@ -43,7 +43,7 @@ void setup()  {
     }
   byte ave = average(dist);
   if(ave > 0 && ave < 12)  {
-    Edward.location()->setWall(Edward.backOf());
+    Edward.World.setWall(Edward.x(), Edward.y(), Edward.backOf());
     }
   delay(100);
   Edward.Wheels.turnRight();
@@ -57,7 +57,7 @@ void loop()  {
   debug("loop() top");
     
   // if the walls haven't been scanned, scan them
-  if(Edward.location()->mapped == false)  {
+  if(Edward.World.getMapped(Edward.x(), Edward.y()) == false)  {
     debug("scanning walls");
     scanWalls(Edward);
     }
@@ -120,16 +120,16 @@ void loop()  {
   
   // if backtracking, the way came is dead end
   if(Edward.backtracking == true)  {
-    Edward.location()->setDeadEnd(Edward.backOf());
+    Edward.World.setDeadEnd(Edward.x(), Edward.y(), Edward.backOf());
     // am i done backtracking?  
-    if(Edward.location()->getNumSides() > 1)  {
+    if(Edward.World.getNumSides(Edward.x(), Edward.y()) > 1)  {
       debug("done backtracking");
       Edward.backtracking = false;
       }
     }
     
   // the way came has been gone through
-  Edward.location()->setGoneThrough(Edward.backOf());
+  Edward.World.setGoneThrough(Edward.x(), Edward.y(), Edward.backOf());
   
   // has robot gotten to all destinations?
   if(Edward.isFinished())  {

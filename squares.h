@@ -14,13 +14,13 @@ class Square  {
     Square();
     
     // is a wall
-    void setWall(byte side);
+    boolean setWall(byte side);
     
     // is a wall?
     boolean getWall(byte side) const;
     
     // is a dead end
-    void setDeadEnd(byte side);
+    boolean setDeadEnd(byte side);
     
     // is a dead end?
     boolean getDeadEnd(byte side) const;
@@ -29,19 +29,19 @@ class Square  {
     byte getNumSides() const;
     
     // is mapped
-    void setSideMapped(byte side);
+    boolean setSideMapped(byte side);
     
     // is mapped?
     boolean getSideMapped(byte side) const;
     
     // square has been mapped
-    void setMapped();
+    boolean setMapped();
     
     // square has been mapped?
     boolean getMapped() const;
     
     // has been gone through
-    void setGoneThrough(byte side);
+    boolean setGoneThrough(byte side);
     
     // has been gone through?
     boolean getGoneThrough(byte side) const;

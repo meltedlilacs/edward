@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include "robot.h"
-#include "squares.h"
+#include "map.h"
 
 /******************************
  returns most efficient path

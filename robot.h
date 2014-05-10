@@ -5,6 +5,7 @@
 #include "locomotion.h"
 #include "squares.h"
 #include "pingSensor.h"
+#include "map.h"
 
 /**************************************************************************
  this class combines classes MotorizedSensor, Locomotion, Zigbee and Map
@@ -19,12 +20,6 @@ class Robot  {
     // takes neck motor pin, left and right drive motor pins, and ping sensor pin. it also sets serial
     // baud rate and gets starting coordinates, ending coordinates and facing from the computer    
     void start(byte tempPingPin, byte tempMotorPin, byte tempLpin, byte tempRpin);
-    
-    // current position
-    Square* location();
-    
-    // destination location
-    Square* endPosition();
     
     // current facing
     byte frontOf() const;
@@ -74,7 +69,7 @@ class Robot  {
     PingSensor Sensor;
     Servo Neck;
     Locomotion Wheels;
-    Square Array[5][5]; // map
+    Map World;
     
     boolean moved;
     

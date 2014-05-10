@@ -11,7 +11,6 @@
 
 byte whichWay(Robot& aRobot)  {
   debug("whichWay start");
-  Square* position = aRobot.location(); // conveince variable
   byte nextSq = 4; // current option - 4 is bad
   
   // use the pythagorean theorem to calculate the distance between the goal and all four squares adjecent to the robot
@@ -31,19 +30,19 @@ byte whichWay(Robot& aRobot)  {
   distance[3] = pow(abs(abs(aRobot.endY()) - abs(aRobot.y())), 2) + pow(abs(abs(aRobot.endX()) - (abs(aRobot.x() - 1))), 2);
   
   // if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
-  if((nextSq == 4 || distance[0] < distance[nextSq]) && (position->getDeadEnd(0) != true) && (position->getWall(0) != true))  {
+  if((nextSq == 4 || distance[0] < distance[nextSq]) && (aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), 0) != true) && (aRobot.World.getWall(aRobot.x(), aRobot.y(), 0) != true))  {
     nextSq = 0;
     }
   // if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
-  if((nextSq == 4 || distance[1] < distance[nextSq]) && (position->getDeadEnd(1) != true) && (position->getWall(1) != true))  {
+  if((nextSq == 4 || distance[1] < distance[nextSq]) && (aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), 1) != true) && (aRobot.World.getWall(aRobot.x(), aRobot.y(), 1) != true))  {
     nextSq = 1;
     }
   // if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
-  if((nextSq == 4 || distance[2] < distance[nextSq]) && (position->getDeadEnd(2) != true) && (position->getWall(2) != true))  {
+  if((nextSq == 4 || distance[2] < distance[nextSq]) && (aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), 2) != true) && (aRobot.World.getWall(aRobot.x(), aRobot.y(), 2) != true))  {
     nextSq = 2;
     }
   // if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
-  if((nextSq == 4 || distance[3] < distance[nextSq]) && (position->getDeadEnd(3) != true) && (position->getWall(3) != true))  {
+  if((nextSq == 4 || distance[3] < distance[nextSq]) && (aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), 3) != true) && (aRobot.World.getWall(aRobot.x(), aRobot.y(), 3) != true))  {
     nextSq = 3;
     }
   debug("whichWay end");

@@ -29,18 +29,6 @@ void Robot::start(byte tempPingPin, byte tempMotorPin, byte tempLpin, byte tempR
   finished = false;
   numberGoals = 3;
   }
-
-  
-// current position
-Square* Robot::location()  {
-//  return Array.member(xPos, yPos);
-  return &Array[xPos][yPos];
-  }
-  
-// destination location
-Square* Robot::endPosition()  {
-  return &Array[goals[currentGoal][0]][goals[currentGoal][1]];
-  }
   
 // current facing
 byte Robot::frontOf() const  {
@@ -211,12 +199,12 @@ void Robot::moveForward()  {
       xPos--;
       break;
     }
-  if(location() == endPosition()) {
+  if(x() == endX() && y() == endY()) {
     String debug_info = "at destination (" + String(xPos) + ", " + String(yPos) + ")";
     debug(debug_info);
     }
   // if at destination, find next good destination
-  while(location() == endPosition() || goals[currentGoal][0] < 0 || goals[currentGoal][1] < 0)  {
+  while((x() == endX() && y() == endY()) || goals[currentGoal][0] < 0 || goals[currentGoal][1] < 0)  {
     currentGoal++;
     debug("current goal: " + String(currentGoal));
     debug("numberGoals - 1: " + String((numberGoals - 1)));

@@ -13,16 +13,18 @@ Square::Square()  {
   for(byte i = 0; i < 4; i++)  {
     wall[i] = false;
     deadEnd[i] = false;
-    sidesMapped[i] = false;
+    sideMapped[i] = false;
     }
   }
   
 // is a wall
-void Square::setWall(byte side)  {
+boolean Square::setWall(byte side)  {
   if(wall[side] != true && side > -1 && side < 4)  {
     wall[side] = true;
     numSides--;
+    return true;
     }
+  return false;
   }
 
 // is a wall?
@@ -33,11 +35,13 @@ boolean Square::getWall(byte side) const  {
   }
 
 // is a dead end
-void Square::setDeadEnd(byte side)  {
+boolean Square::setDeadEnd(byte side)  {
   if(deadEnd[side] != true && side > -1 && side < 4)  {
     deadEnd[side] = true;
     numSides--;
+    return true;
     }
+  return false;
   }
 
 // is a bad side?
@@ -53,43 +57,49 @@ byte Square::getNumSides() const  {
   }
 
 // is mapped
-void setSideMapped(byte side) {
+boolean Square::setSideMapped(byte side) {
   if(sideMapped[side] != true && side > -1 && side < 4)  {
     sideMapped[side] = true;
     numMapped--;
+    if(numMapped == 4) {
+      mapped = true;
+      }
+    return true;
     }
-  if(numMapped == 4) {
-    mapped = true;
-    }
+  return false;
   }
 
 // is mapped?
-boolean getSideMapped(byte side) const;
+boolean Square::getSideMapped(byte side) const {
   if(side > -1 && side < 4)  {
     return sideMapped[side];
     }
   }
 
 // square has been mapped
-void setMapped() {
+boolean Square::setMapped() {
   if(!mapped) {
     for(int i = 0; i < 4; i++) {
       setSideMapped(i);
       }
+    return true;
     }
+  return false;
   }
 
 // square has been mapped?
-boolean getMapped() const {
+boolean Square::getMapped() const {
   return mapped;
   }
   
 // has been gone through
-void Square::setGoneThrough(byte side)  {
+boolean Square::setGoneThrough(byte side)  {
   if(goneThrough[side] != true && side > -1 && side < 4)  {
     goneThrough[side] = true;
     numSides--;
+    return true;
     }
+  return false;
   }
 
 // has been gone through?
