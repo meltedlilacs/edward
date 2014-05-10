@@ -8,38 +8,39 @@
 ******************************/
 
 // pass the pin numbers to be used
-void Locomotion::start(byte Lpin, byte Rpin)  {
-  Lzero = 90;
-  Rzero = 90;
-  
-  if(Lzero < Rzero)  {
-    LspeedDiff = Rzero - Lzero;
-    RspeedDiff = 0;
-    }
-  if(Lzero > Rzero)  {
-    LspeedDiff = 0;
-    RspeedDiff = Lzero - Rzero;
-    }
+void Locomotion::start(byte Lpin, byte Rpin, unsigned int tempLeftTime, unsigned int tempRightTime, unsigned int tempMoveTime, byte tempLzero, byte tempRzero)  {
+  Lzero = tempLzero;
+  Rzero = tempRzero;
+
+  leftTime = tempLeftTime;
+  rightTime = tempRightTime;
+  moveTime = tempMoveTime;
     
   // basic motor setup
   Lservo.attach(Lpin);
   Rservo.attach(Rpin);
-    }
+  }
     
 void Locomotion::moveForward()  {
   Lservo.write(175);
   Rservo.write(0);
+  delay(moveTime);
+  stop();
   }
 
 void Locomotion::turnLeft()  {
   Lservo.write(60);
   Rservo.write(10);
+  delay(leftTime);
+  stop();
   }
   
 // turn in place to the right
 void Locomotion::turnRight()  {
   Lservo.write(180);
   Rservo.write(117);
+  delay(rightTime);
+  stop();
   }
   
 // u-turn clockwise

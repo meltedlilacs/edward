@@ -11,10 +11,10 @@
   
 // takes neck motor pin, left and right drive motor pins, and ping sensor pin. it also sets serial 
 // baud rate and gets starting coordinates, ending coordinates and facing from the computer
-void Robot::start(byte tempPingPin, byte tempMotorPin, byte tempLpin, byte tempRpin)  {
+void Robot::start(byte tempPingPin, byte tempMotorPin, byte tempLpin, byte tempRpin, unsigned int tempLeftTime, unsigned int tempRightTime, unsigned int tempMoveTime, byte tempLzero, byte tempRzero)  {
   Sensor.start(tempPingPin);
   Neck.attach(tempMotorPin);
-  Wheels.start(tempLpin, tempRpin);
+  Wheels.start(tempLpin, tempRpin, tempLeftTime, tempRightTime, tempMoveTime, tempLzero, tempRzero);
   backtracking = false;
   xPos = 0;
   yPos = 0;
@@ -185,6 +185,7 @@ byte Robot::dirToInt(byte dir) const  {
 
 void Robot::moveForward()  {
   moved = true;
+  Wheels.moveForward();
   switch(facing)  {
     case 0:
       yPos++;
@@ -218,6 +219,7 @@ void Robot::moveForward()  {
   
 void Robot::turnLeft()  {
   moved = true;
+  Wheels.turnLeft();
   // update direction variable:
   if(facing == 0)  {
     facing = 3;
@@ -229,6 +231,7 @@ void Robot::turnLeft()  {
   
 void Robot::turnRight()  {
   moved = true;
+  Wheels.turnRight();
   // update direction variable:
   if(facing == 3)  {
     facing = 0;
@@ -240,6 +243,7 @@ void Robot::turnRight()  {
   
 void Robot::uTurn()  {
   moved = true;
+  Wheels.uTurn();
   // update direction variable:
   switch(facing)  {
     case(0):
@@ -255,6 +259,10 @@ void Robot::uTurn()  {
       facing = 1;
       break;
     }
+  }
+
+void Robot::stop() {
+  Wheels.stop();
   }
 
 boolean Robot::isFinished() {

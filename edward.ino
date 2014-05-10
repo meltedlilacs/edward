@@ -3,6 +3,10 @@
  release notes:
  -added class map
  -scanning is happier :)
+ -increased encapsulation
+  * movement is now done through
+    Robot, enforcing the updating
+    of variables
 ***************************************/
 
 // -1 = null; 0 = front; 1 = back; 2 = left; 3 = right
@@ -14,26 +18,21 @@
 #include <Servo.h>  // for motor
 
 Robot Edward; // only instance used by main
-int rTurn = 900;
-int lTurn = 750;
-int moveTime = 2200;
 
 void setup()  {
   Serial.begin(9600);
   // cannot be initialized in constructor because the constructor
   // is called before the arduino functions work
-  // ping, head motor, l motor, r motor
-  Edward.start(7, 9, 3, 11);
-  Edward.Wheels.stop();
+  // ping, head motor, l motor, r motor, l turn, r turn, move time, l zero, r zero
+  Edward.start(7, 9, 3, 11, 750, 900, 2200);
+  Edward.stop();
   Edward.Neck.write(90);
   debug("program start");
   // scan side behind robot. only needs to be done once
   // because every other time the robot has alreay moved
   // and so knows what is behind itself. This is in setup()
   // because it moves the wheels and so cannot be in scanWalls()
-  Edward.Wheels.turnRight();
-  delay(rTurn * 2);
-  Edward.Wheels.stop();
+  Edward.turnRight();
   delay(100);
   // average five values for ping sensor
   byte dist[5] = {0, 0, 0, 0, 0};
@@ -46,9 +45,7 @@ void setup()  {
     Edward.World.setWall(Edward.x(), Edward.y(), Edward.backOf());
     }
   delay(100);
-  Edward.Wheels.turnRight();
-  delay(rTurn * 2);
-  Edward.Wheels.stop();
+  Edward.turnRight();
   
   debug("setup() finished");
   }
@@ -77,45 +74,24 @@ void loop()  {
   if(nextSq == 0)  {
     debug("going forward");
     Edward.moveForward();
-    Edward.Wheels.moveForward();
-    delay(moveTime);
-    Edward.Wheels.stop();
     }
   // turn right
   if(nextSq == 1)  {
     debug("going right");
     Edward.turnRight();
-    Edward.Wheels.turnRight();
-    delay(rTurn);
-    Edward.Wheels.stop();
     Edward.moveForward();
-    Edward.Wheels.moveForward();
-    delay(moveTime);
-    Edward.Wheels.stop();
     }
   // u turn
   if(nextSq == 2)  {
     debug("going backwards");
     Edward.uTurn();
-    Edward.Wheels.turnRight();
-    delay(rTurn * 2);
-    Edward.Wheels.stop();
     Edward.moveForward();
-    Edward.Wheels.moveForward();
-    delay(moveTime);
-    Edward.Wheels.stop();
     }
   // turn left
   if(nextSq == 3)  {
     debug("going left");
     Edward.turnLeft();
-    Edward.Wheels.turnLeft();
-    delay(lTurn);
-    Edward.Wheels.stop();
     Edward.moveForward();
-    Edward.Wheels.moveForward();
-    delay(moveTime);
-    Edward.Wheels.stop();
     }
   
   // if backtracking, the way came is dead end

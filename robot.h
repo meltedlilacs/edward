@@ -19,7 +19,7 @@ class Robot  {
   public:
     // takes neck motor pin, left and right drive motor pins, and ping sensor pin. it also sets serial
     // baud rate and gets starting coordinates, ending coordinates and facing from the computer    
-    void start(byte tempPingPin, byte tempMotorPin, byte tempLpin, byte tempRpin);
+    void start(byte tempPingPin, byte tempMotorPin, byte tempLpin, byte tempRpin, unsigned int tempLeftTime, unsigned int tempRightTime, unsigned int tempMoveTime, byte tempLzero = 90, byte tempRzero = 90);
     
     // current facing
     byte frontOf() const;
@@ -50,10 +50,6 @@ class Robot  {
     
     byte dirToInt(byte dir) const;
     
-    // update direction variables-
-    // ONLY CALL AFTER CALLING THE CORRISPONDING
-    // LOCOMOTION FUNCTION!!!!!!!!!!!!!!!!!!!!!!
-    
     void moveForward();
     
     void turnLeft();
@@ -61,6 +57,8 @@ class Robot  {
     void turnRight();
     
     void uTurn();
+
+    void stop();
     
     boolean isFinished();
     
@@ -68,12 +66,12 @@ class Robot  {
 
     PingSensor Sensor;
     Servo Neck;
-    Locomotion Wheels;
     Map World;
     
     boolean moved;
     
     private:
+      Locomotion Wheels;
       byte xPos; // x coordinate
       byte yPos; // y coordinate
       byte goals[3][2];

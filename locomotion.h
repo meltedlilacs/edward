@@ -14,7 +14,7 @@
 class Locomotion  {
   public:
     // pass the pin numbers to be used
-    void start(byte Lpin, byte Rpin);
+    void start(byte Lpin, byte Rpin, unsigned int tempLeftTime, unsigned int tempRightTime, unsigned int tempMoveTime, byte tempLzero = 90, byte tempRzero = 90);
     
     // move one square forward
     void moveForward();
@@ -33,7 +33,7 @@ class Locomotion  {
   private:
     Servo Lservo, Rservo;
     byte Lzero, Rzero; // the values that will stop the motors
-    byte LspeedDiff, RspeedDiff;
+    unsigned int leftTime, rightTime, moveTime;
   };
 
 #endif
