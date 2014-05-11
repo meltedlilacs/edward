@@ -15,6 +15,24 @@ void scanWalls(Robot& aRobot)  {
   aRobot.Neck.write(90);
   delay(100);
   
+  // if back of robot has not been scanned, scan it  
+  if(aRobot.World.getSideMapped(aRobot.x(), aRobot.y(), aRobot.backOf()) != true)  {
+    Edward.uTurn();
+    // average three values for ping sensor
+    byte dist[5] = {0, 0, 0, 0, 0};
+    aRobot.Neck.write(90);
+    delay(head_turn_delay);
+    for(byte i = 0; i < 5; i++)  {
+      dist[i] = aRobot.Sensor.distance();
+      delay(50);
+      }
+    byte ave = average(dist);
+    if(ave > minDist && ave < maxDist)  {
+      aRobot.World.setWall(aRobot.x(), aRobot.y(), aRobot.backOf());
+      }
+    Edward.uTurn();
+    }
+
   // if left of robot has not been scanned, scan it
   if(aRobot.World.getSideMapped(aRobot.x(), aRobot.y(), aRobot.leftOf()) != true)  {
     // average three values for ping sensor

@@ -1,6 +1,6 @@
 /***************************************
- might work.
- adding enums
+ probably works. moved scanning
+ behind itself to scanwalls
 ***************************************/
 
 #include "robot.h" // defines class Robot
@@ -21,24 +21,6 @@ void setup()  {
   Edward.stop();
   Edward.Neck.write(90);
   debug("Press any key to start");
-  // scan side behind robot. only needs to be done once
-  // because every other time the robot has alreay moved
-  // and so knows what is behind itself. This is in setup()
-  // because it moves the wheels and so cannot be in scanWalls()
-  Edward.uTurn();
-  delay(100);
-  // average five values for ping sensor
-  byte dist[5] = {0, 0, 0, 0, 0};
-  for(byte i = 0; i < 5; i++)  {
-    dist[i] = Edward.Sensor.distance();
-    delay(50);
-    }
-  byte ave = average(dist);
-  if(ave > 0 && ave < 12)  {
-    Edward.World.setWall(Edward.x(), Edward.y(), Edward.backOf());
-    }
-  delay(100);
-  Edward.uTurn();
   }
 
 void loop()  {
