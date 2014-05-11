@@ -1,4 +1,5 @@
 #include "scanWalls.h"
+#include "debug.h"
 
 /****************************************
  reads all walls that need to be read,

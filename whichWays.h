@@ -9,6 +9,6 @@
  returns most efficient path
 ******************************/
 
-byte whichWay(Robot& aRobot);
+compassDir whichWay(Robot& aRobot);
 
 #endif

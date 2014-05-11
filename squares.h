@@ -2,6 +2,7 @@
 #define squares.h
 
 #include <Arduino.h>
+#include "enums.h"
 
 /*****************************
  class containing info
@@ -14,25 +15,25 @@ class Square  {
     Square();
     
     // is a wall
-    boolean setWall(byte side);
+    boolean setWall(compassDir side);
     
     // is a wall?
-    boolean getWall(byte side) const;
+    boolean getWall(compassDir side) const;
     
     // is a dead end
-    boolean setDeadEnd(byte side);
+    boolean setDeadEnd(compassDir side);
     
     // is a dead end?
-    boolean getDeadEnd(byte side) const;
+    boolean getDeadEnd(compassDir side) const;
     
     // number of exitable sides
     byte getNumSides() const;
     
     // is mapped
-    boolean setSideMapped(byte side);
+    boolean setSideMapped(compassDir side);
     
     // is mapped?
-    boolean getSideMapped(byte side) const;
+    boolean getSideMapped(compassDir side) const;
     
     // square has been mapped
     boolean setMapped();
@@ -41,10 +42,10 @@ class Square  {
     boolean getMapped() const;
     
     // has been gone through
-    boolean setGoneThrough(byte side);
+    boolean setGoneThrough(compassDir side);
     
     // has been gone through?
-    boolean getGoneThrough(byte side) const;
+    boolean getGoneThrough(compassDir side) const;
     
   private:
     boolean wall[4]; // where walls are

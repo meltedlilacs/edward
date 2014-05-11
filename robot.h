@@ -6,6 +6,7 @@
 #include "squares.h"
 #include "pingSensor.h"
 #include "map.h"
+#include "enums.h"
 
 /**************************************************************************
  this class combines classes MotorizedSensor, Locomotion, Zigbee and Map
@@ -22,16 +23,16 @@ class Robot  {
     void start(byte tempPingPin, byte tempMotorPin, byte tempLpin, byte tempRpin, unsigned int tempLeftTime, unsigned int tempRightTime, unsigned int tempMoveTime, byte tempLzero = 90, byte tempRzero = 90);
     
     // current facing
-    byte frontOf() const;
+    compassDir frontOf() const;
     
     // left of current facing
-    byte leftOf() const;
+    compassDir leftOf() const;
     
     // right of current facing
-    byte rightOf() const;
+    compassDir rightOf() const;
     
     // back of current facing
-    byte backOf() const;
+    compassDir backOf() const;
     
     // current x coordinate
     byte x() const;
@@ -46,9 +47,9 @@ class Robot  {
     byte endY() const;
     
     // side to relative direction conversion
-    byte intToDir(byte side) const;
+    relativeDir compassToRelative(compassDir side) const;
     
-    byte dirToInt(byte dir) const;
+    compassDir relativeToCompass(relativeDir dir) const;
     
     void moveForward();
     
@@ -77,7 +78,7 @@ class Robot  {
       byte goals[3][2];
       byte currentGoal;
       byte numberGoals; // number of goals
-      byte facing; // what direction am i facing?
+      compassDir facing; // what direction am i facing?
       boolean finished;
   };
 

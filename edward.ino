@@ -1,21 +1,14 @@
 /***************************************
- probably functional
- release notes:
- -added class map
- -scanning is happier :)
- -increased encapsulation
-  * movement is now done through
-    Robot, enforcing the updating
-    of variables
+ might work.
+ adding enums
 ***************************************/
-
-// -1 = null; 0 = front; 1 = back; 2 = left; 3 = right
 
 #include "robot.h" // defines class Robot
 #include "scanWalls.h" // defines function scanWalls
 #include "whichWays.h" // defines function whichWay
 #include "debug.h" // what could this be used for?
 #include <Servo.h>  // for motor
+#include "enums.h"
 
 Robot Edward; // only instance used by main
 
@@ -24,7 +17,7 @@ void setup()  {
   // cannot be initialized in constructor because the constructor
   // is called before the arduino functions work
   // ping, head motor, l motor, r motor, l turn, r turn, move time, l zero, r zero
-  Edward.start(7, 9, 3, 11, 750, 900, 2200);
+  Edward.start(7, 9, 3, 11, 700, 800, 2200);
   Edward.stop();
   Edward.Neck.write(90);
   debug("Press any key to start");
@@ -53,34 +46,34 @@ void loop()  {
   if(Edward.World.getMapped(Edward.x(), Edward.y()) == false)  {
     scanWalls(Edward);
     }
-  debug("Walls at (" + String(Edward.x()) + ", " + String(Edward.y()) + "): [" + String(Edward.World.getWall(Edward.x(), Edward.y(), 0)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), 1)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), 2)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), 3)) + "]");
+  debug("Walls at (" + String(Edward.x()) + ", " + String(Edward.y()) + "): [" + String(Edward.World.getWall(Edward.x(), Edward.y(), NORTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), EAST)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), SOUTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), WEST)) + "]");
   // get best route
-  byte nextSq = whichWay(Edward);
-  debug("Going in direction " + String(nextSq));
+  relativeDir nextSq = Edward.compassToRelative(whichWay(Edward));
+  debug("Going in direction " + toString(nextSq));
   
   // am i backtracking?
-  if(nextSq == 2)  {
+  if(nextSq == BACK)  {
     debug("Now backtracking");
     Edward.backtracking = true;
     }
   
   // follow the best route
   // go forward
-  if(nextSq == 0)  {
+  if(nextSq == FRONT)  {
     Edward.moveForward();
     }
   // turn right
-  if(nextSq == 1)  {
+  if(nextSq == RIGHT)  {
     Edward.turnRight();
     Edward.moveForward();
     }
   // u turn
-  if(nextSq == 2)  {
+  if(nextSq == BACK)  {
     Edward.uTurn();
     Edward.moveForward();
     }
   // turn left
-  if(nextSq == 3)  {
+  if(nextSq == LEFT)  {
     Edward.turnLeft();
     Edward.moveForward();
     }

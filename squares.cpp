@@ -18,9 +18,9 @@ Square::Square()  {
   }
   
 // is a wall
-boolean Square::setWall(byte side)  {
-  if(wall[side] != true && side > -1 && side < 4)  {
-    wall[side] = true;
+boolean Square::setWall(compassDir side)  {
+  if(wall[enumToInt(side)] != true)  {
+    wall[enumToInt(side)] = true;
     numSides--;
     return true;
     }
@@ -28,16 +28,14 @@ boolean Square::setWall(byte side)  {
   }
 
 // is a wall?
-boolean Square::getWall(byte side) const  {
-  if(side > -1 && side < 4)  {
-    return wall[side];
-    }
+boolean Square::getWall(compassDir side) const  {
+  return wall[enumToInt(side)];
   }
 
 // is a dead end
-boolean Square::setDeadEnd(byte side)  {
-  if(deadEnd[side] != true && side > -1 && side < 4)  {
-    deadEnd[side] = true;
+boolean Square::setDeadEnd(compassDir side)  {
+  if(deadEnd[enumToInt(side)] != true)  {
+    deadEnd[enumToInt(side)] = true;
     numSides--;
     return true;
     }
@@ -45,10 +43,8 @@ boolean Square::setDeadEnd(byte side)  {
   }
 
 // is a bad side?
-boolean Square::getDeadEnd(byte side) const  {
-  if(side > -1 && side < 4)  {
-    return deadEnd[side];
-    }
+boolean Square::getDeadEnd(compassDir side) const  {
+  return deadEnd[enumToInt(side)];
   }
 
 // number of exitable sides
@@ -57,9 +53,9 @@ byte Square::getNumSides() const  {
   }
 
 // is mapped
-boolean Square::setSideMapped(byte side) {
-  if(sideMapped[side] != true && side > -1 && side < 4)  {
-    sideMapped[side] = true;
+boolean Square::setSideMapped(compassDir side) {
+  if(sideMapped[enumToInt(side)] != true)  {
+    sideMapped[enumToInt(side)] = true;
     numMapped--;
     if(numMapped == 4) {
       mapped = true;
@@ -70,18 +66,17 @@ boolean Square::setSideMapped(byte side) {
   }
 
 // is mapped?
-boolean Square::getSideMapped(byte side) const {
-  if(side > -1 && side < 4)  {
-    return sideMapped[side];
-    }
+boolean Square::getSideMapped(compassDir side) const {
+  return sideMapped[enumToInt(side)];
   }
 
 // square has been mapped
 boolean Square::setMapped() {
   if(!mapped) {
-    for(int i = 0; i < 4; i++) {
-      setSideMapped(i);
-      }
+    setSideMapped(NORTH);
+    setSideMapped(EAST);
+    setSideMapped(SOUTH);
+    setSideMapped(WEST);
     return true;
     }
   return false;
@@ -93,9 +88,9 @@ boolean Square::getMapped() const {
   }
   
 // has been gone through
-boolean Square::setGoneThrough(byte side)  {
-  if(goneThrough[side] != true && side > -1 && side < 4)  {
-    goneThrough[side] = true;
+boolean Square::setGoneThrough(compassDir side)  {
+  if(goneThrough[enumToInt(side)] != true)  {
+    goneThrough[enumToInt(side)] = true;
     numSides--;
     return true;
     }
@@ -103,8 +98,6 @@ boolean Square::setGoneThrough(byte side)  {
   }
 
 // has been gone through?
-boolean Square::getGoneThrough(byte side) const  {
-  if(side > -1 && side < 4)  {
-    return goneThrough[side];
-    }
+boolean Square::getGoneThrough(compassDir side) const  {
+  return goneThrough[enumToInt(side)];
   }

@@ -1,5 +1,6 @@
 #include "robot.h"
 #include "debug.h"
+#include "enums.h"
 
 /**************************************************************************
  this class combines classes MotorizedSensor, Locomotion, Zigbee and Map
@@ -25,66 +26,66 @@ void Robot::start(byte tempPingPin, byte tempMotorPin, byte tempLpin, byte tempR
   goals[2][0] = 0;
   goals[2][1] = 0;
   currentGoal = 1;
-  facing = 0;
+  facing = NORTH;
   finished = false;
   numberGoals = 3;
   }
   
 // current facing
-byte Robot::frontOf() const  {
+compassDir Robot::frontOf() const  {
   return facing;
   }
   
 // left of current facing
-byte Robot::leftOf() const  {
+compassDir Robot::leftOf() const  {
   switch(facing)  {
-    case 0:
-      return 3;
+    case NORTH:
+      return WEST;
       break;
-    case 1:
-      return 0;
+    case EAST:
+      return NORTH;
       break;
-    case 2:
-      return 1;
+    case SOUTH:
+      return EAST;
       break;
-    case 3:
-      return 2;
+    case WEST:
+      return SOUTH;
       break;
     }
   }
 
 // right of current facing
-byte Robot::rightOf() const  {
+compassDir Robot::rightOf() const  {
   switch(facing)  {
-    case 0:
-      return 1;
+    case NORTH:
+      return EAST;
       break;
-    case 1:
-      return 2;
+    case EAST:
+      return SOUTH;
       break;
-    case 2:
-      return 3;
+    case SOUTH:
+      return WEST;
       break;
-    case 3:
-      return 0;
+    case WEST:
+      return NORTH;
       break;
     }
   }
 
 // back of current facing
-byte Robot::backOf() const  {
+compassDir Robot::backOf() const  {
   switch(facing)  {
-    case 0:
-      return 2;
+    case NORTH:
+      return SOUTH;
       break;
-    case 1:
-      return 3;
+    case EAST:
+      return WEST;
       break;
-    case 2:
-      return 0;
+    case SOUTH:
+      return NORTH;
       break;
-    case 3:
-      return 1;
+    case WEST:
+      return EAST;
       break;
     }
   }
@@ -109,72 +110,86 @@ byte Robot::endY() const  {
   return goals[currentGoal][1];
   }
 
-// side to relative direction conversion
-byte Robot::intToDir(byte side) const  {
+// compass to relative conversion
+relativeDir Robot::compassToRelative(compassDir side) const  {
   if(side == frontOf())  {
-    return 0;
+    return FRONT;
     }
   if(side == rightOf())  {
-    return 1;
+    return RIGHT;
     }
   if(side == backOf())  {
-    return 2;
+    return BACK;
     }
   if(side == leftOf())  {
-    return 3;
+    return LEFT;
     }
   }
 
-byte Robot::dirToInt(byte dir) const  {
+// relative direction to compass
+compassDir Robot::relativeToCompass(relativeDir dir) const  {
   switch(facing)  {
-    case 0:
-      return dir;
-      break;
-    case 1:
+    case NORTH:
       switch(dir)  {
-        case 0:
-          return 3;
+        case FRONT:
+          return NORTH;
           break;
-        case 1:
-          return 2;
+        case RIGHT:
+          return EAST;
           break;
-        case 2:
-          return 1;
+        case BACK:
+          return SOUTH;
           break;
-        case 3:
-          return 0;
+        case LEFT:
+          return WEST;
           break;
         }
       break;
-    case 2:
+    case EAST:
       switch(dir)  {
-        case 0:
-          return 2;
+        case FRONT:
+          return WEST;
           break;
-        case 1:
-          return 3;
+        case RIGHT:
+          return SOUTH;
           break;
-        case 2:
-          return 0;
+        case BACK:
+          return EAST;
           break;
-        case 3:
-          return 1;
+        case LEFT:
+          return NORTH;
           break;
         }
       break;
-    case 3:
+    case SOUTH:
       switch(dir)  {
-        case 0:
-          return 3;
+        case FRONT:
+          return SOUTH;
           break;
-        case 1:
-          return 0;
+        case RIGHT:
+          return WEST;
           break;
-        case 2:
-          return 1;
+        case BACK:
+          return NORTH;
           break;
-        case 3:
-          return 0;
+        case LEFT:
+          return EAST;
+          break;
+        }
+      break;
+    case WEST:
+      switch(dir)  {
+        case FRONT:
+          return WEST;
+          break;
+        case RIGHT:
+          return NORTH;
+          break;
+        case BACK:
+          return EAST;
+          break;
+        case LEFT:
+          return SOUTH;
           break;
         }
       break;
@@ -187,16 +202,16 @@ void Robot::moveForward()  {
   moved = true;
   Wheels.moveForward();
   switch(facing)  {
-    case 0:
+    case NORTH:
       yPos++;
       break;
-    case 1:
+    case EAST:
       xPos++;
       break;
-    case 2:
+    case SOUTH:
       yPos--;
       break;
-    case 3:
+    case WEST:
       xPos--;
       break;
     }
@@ -217,43 +232,56 @@ void Robot::moveForward()  {
 void Robot::turnLeft()  {
   moved = true;
   Wheels.turnLeft();
-  // update direction variable:
-  if(facing == 0)  {
-    facing = 3;
-    }
-  else  {
-    facing--;
+  switch(facing) {
+    case NORTH:
+      facing = WEST;
+      break;
+    case EAST:
+      facing = NORTH;
+      break;
+    case SOUTH:
+      facing = EAST;
+      break;
+    case WEST:
+      facing = SOUTH;
+      break;
     }
   }
   
 void Robot::turnRight()  {
   moved = true;
   Wheels.turnRight();
-  // update direction variable:
-  if(facing == 3)  {
-    facing = 0;
-    }
-  else  {
-    facing++;
+  switch(facing) {
+    case NORTH:
+      facing = EAST;
+      break;
+    case EAST:
+      facing = SOUTH;
+      break;
+    case SOUTH:
+      facing = WEST;
+      break;
+    case WEST:
+      facing = NORTH;
+      break;
     }
   }
   
 void Robot::uTurn()  {
   moved = true;
   Wheels.uTurn();
-  // update direction variable:
-  switch(facing)  {
-    case(0):
-      facing = 2;
+  switch(facing) {
+    case NORTH:
+      facing = SOUTH;
       break;
-    case(1):
-      facing = 3;
+    case EAST:
+      facing = WEST;
       break;
-    case(2):
-      facing = 0;
+    case SOUTH:
+      facing = NORTH;
       break;
-    case(3):
-      facing = 1;
+    case WEST:
+      facing = EAST;
       break;
     }
   }

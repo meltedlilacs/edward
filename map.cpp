@@ -1,4 +1,5 @@
 #include "map.h"
+#include "enums.h"
 
 Map::Map() {
   width = 5;
@@ -6,8 +7,8 @@ Map::Map() {
   }
     
 // is a wall?
-boolean Map::getWall(byte x, byte y, byte side) {
-  if(x >= 0 && x < width && y >= 0 && y < height && side >= 0 && side < 4) {
+boolean Map::getWall(byte x, byte y, compassDir side) {
+  if(x >= 0 && x < width && y >= 0 && y < height) {
     return Array[x][y].getWall(side);
     }
   else {
@@ -17,8 +18,8 @@ boolean Map::getWall(byte x, byte y, byte side) {
   }
 
 // is a dead end?
-boolean Map::getDeadEnd(byte x, byte y, byte side) {
-  if(x >= 0 && x < width && y >= 0 && y < height && side >= 0 && side < 4) {
+boolean Map::getDeadEnd(byte x, byte y, compassDir side) {
+  if(x >= 0 && x < width && y >= 0 && y < height) {
     return Array[x][y].getDeadEnd(side);
     }
   else {
@@ -28,8 +29,8 @@ boolean Map::getDeadEnd(byte x, byte y, byte side) {
   }
 
 // is mapped?
-boolean Map::getSideMapped(byte x, byte y, byte side) {
-  if(x >= 0 && x < width && y >= 0 && y < height && side >= 0 && side < 4) {
+boolean Map::getSideMapped(byte x, byte y, compassDir side) {
+  if(x >= 0 && x < width && y >= 0 && y < height) {
     return Array[x][y].getSideMapped(side);
     }
   else {
@@ -50,8 +51,8 @@ boolean Map::getMapped(byte x, byte y) {
   }
 
 // has been gone through?
-boolean Map::getGoneThrough(byte x, byte y, byte side) {
-  if(x >= 0 && x < width && y >= 0 && y < height && side >= 0 && side < 4) {
+boolean Map::getGoneThrough(byte x, byte y, compassDir side) {
+  if(x >= 0 && x < width && y >= 0 && y < height) {
     return Array[x][y].getGoneThrough(side);
     }
   else {
@@ -72,20 +73,20 @@ byte Map::getNumSides(byte x, byte y) const {
   }
 
 // is a wall
-boolean Map::setWall(byte x, byte y, byte side) {
+boolean Map::setWall(byte x, byte y, compassDir side) {
   if(x >= 0 && x < width && y >= 0 && y < height && getWall(x, y, side) != true) {
     switch(side) {
-      case 0:
-        Array[x][y + 1].setWall(2);
+      case NORTH:
+        Array[x][y + 1].setWall(SOUTH);
         break;
-      case 1:
-        Array[x + 1][y].setWall(3);
+      case EAST:
+        Array[x + 1][y].setWall(WEST);
         break;
-      case 2:
-        Array[x][y - 1].setWall(0);
+      case SOUTH:
+        Array[x][y - 1].setWall(NORTH);
         break;
-      case 3:
-        Array[x - 1][y].setWall(1);
+      case WEST:
+        Array[x - 1][y].setWall(EAST);
         break;
       }
     setSideMapped(x, y, side);
@@ -97,20 +98,20 @@ boolean Map::setWall(byte x, byte y, byte side) {
   }
 
 // is a dead end
-boolean Map::setDeadEnd(byte x, byte y, byte side) {
+boolean Map::setDeadEnd(byte x, byte y, compassDir side) {
   if(x >= 0 && x < width && y >= 0 && y < height && getWall(x, y, side) != true) {
     switch(side) {
-      case 0:
-        Array[x][y + 1].setDeadEnd(2);
+      case NORTH:
+        Array[x][y + 1].setDeadEnd(SOUTH);
         break;
-      case 1:
-        Array[x + 1][y].setDeadEnd(3);
+      case EAST:
+        Array[x + 1][y].setDeadEnd(WEST);
         break;
-      case 2:
-        Array[x][y - 1].setDeadEnd(0);
+      case SOUTH:
+        Array[x][y - 1].setDeadEnd(NORTH);
         break;
-      case 3:
-        Array[x - 1][y].setDeadEnd(1);
+      case WEST:
+        Array[x - 1][y].setDeadEnd(EAST);
         break;
       }
     setSideMapped(x, y, side);
@@ -122,23 +123,23 @@ boolean Map::setDeadEnd(byte x, byte y, byte side) {
   }
 
 // is mapped
-boolean Map::setSideMapped(byte x, byte y, byte side) {
+boolean Map::setSideMapped(byte x, byte y, compassDir side) {
   if(x >= 0 && x < width && y >= 0 && y < height && getWall(x, y, side) != true) {
     switch(side) {
-      case 0:
-        Array[x][y + 1].setSideMapped(2);
+      case NORTH:
+        Array[x][y + 1].setSideMapped(SOUTH);
         break;
-      case 1:
-        Array[x + 1][y].setSideMapped(3);
+      case EAST:
+        Array[x + 1][y].setSideMapped(WEST);
         break;
-      case 2:
-        Array[x][y - 1].setSideMapped(0);
+      case SOUTH:
+        Array[x][y - 1].setSideMapped(NORTH);
         break;
-      case 3:
-        Array[x - 1][y].setSideMapped(1);
+      case WEST:
+        Array[x - 1][y].setSideMapped(EAST);
         break;
       }
-    if(getSideMapped(x, y, 0) && getSideMapped(x, y, 1) && getSideMapped(x, y, 2) && getSideMapped(x, y, 3)) {
+    if(getSideMapped(x, y, NORTH) && getSideMapped(x, y, EAST) && getSideMapped(x, y, SOUTH) && getSideMapped(x, y, WEST)) {
       Array[x][y].setMapped();
       }
     return Array[x][y].setSideMapped(side);
@@ -149,20 +150,20 @@ boolean Map::setSideMapped(byte x, byte y, byte side) {
   }
 
 // has been gone through
-boolean Map::setGoneThrough(byte x, byte y, byte side) {
+boolean Map::setGoneThrough(byte x, byte y, compassDir side) {
   if(x >= 0 && x < width && y >= 0 && y < height && getWall(x, y, side) != true) {
     switch(side) {
-      case 0:
-        Array[x][y + 1].setGoneThrough(2);
+      case NORTH:
+        Array[x][y + 1].setGoneThrough(SOUTH);
         break;
-      case 1:
-        Array[x + 1][y].setGoneThrough(3);
+      case EAST:
+        Array[x + 1][y].setGoneThrough(WEST);
         break;
-      case 2:
-        Array[x][y - 1].setGoneThrough(0);
+      case SOUTH:
+        Array[x][y - 1].setGoneThrough(NORTH);
         break;
-      case 3:
-        Array[x - 1][y].setGoneThrough(1);
+      case WEST:
+        Array[x - 1][y].setGoneThrough(EAST);
         break;
       }
     setSideMapped(x, y, side);
