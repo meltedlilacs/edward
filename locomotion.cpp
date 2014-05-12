@@ -22,6 +22,7 @@ void Locomotion::start(byte Lpin, byte Rpin, unsigned int tempLeftTime, unsigned
   }
     
 void Locomotion::moveForward()  {
+  delay(50);
   Lservo.write(175);
   Rservo.write(0);
   delay(moveTime);
@@ -29,6 +30,7 @@ void Locomotion::moveForward()  {
   }
 
 void Locomotion::turnLeft()  {
+  delay(50);
   Lservo.write(60);
   Rservo.write(10);
   delay(leftTime);
@@ -37,6 +39,7 @@ void Locomotion::turnLeft()  {
   
 // turn in place to the right
 void Locomotion::turnRight()  {
+  delay(50);
   Lservo.write(180);
   Rservo.write(117);
   delay(rightTime);
@@ -45,11 +48,13 @@ void Locomotion::turnRight()  {
   
 // u-turn clockwise
 void Locomotion::uTurn()  {
+  delay(50);
   turnRight();
   turnRight();
   }
   
 void Locomotion::stop()  {
+  delay(50);
   Lservo.write(Lzero);
   Rservo.write(Rzero);
   }
