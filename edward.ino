@@ -1,6 +1,6 @@
 /***************************************
- probably works. moved scanning
- behind itself to scanwalls
+ works. added checking to see if a
+ square exists before moving to it
 ***************************************/
 
 #include "robot.h" // defines class Robot

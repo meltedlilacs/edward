@@ -39,6 +39,9 @@ class Map {
     
     // has been gone through
     boolean setGoneThrough(byte x, byte y, compassDir side);
+
+    // are these real values?
+    boolean squareExists(byte x, byte y);
     
   private:
     Square Array[5][5]; // map

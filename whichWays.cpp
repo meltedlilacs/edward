@@ -1,15 +1,12 @@
 #include "whichWays.h"
 #include "debug.h" // what could this be used for?
 #include "enums.h"
+#include "map.h"
 #include <Arduino.h>
 
 /******************************
  returns most efficient path
 ******************************/
-
-// currentRoute[i][0] = x pos
-// currentRoute[i][1] = y pos
-// currentRoute[i][2] = next move
 
 compassDir whichWay(Robot& aRobot)  {
 	compassDir nextSq;
@@ -32,22 +29,22 @@ compassDir whichWay(Robot& aRobot)  {
 	distance[3] = pow(abs(abs(aRobot.endY()) - abs(aRobot.y())), 2) + pow(abs(abs(aRobot.endX()) - (abs(aRobot.x() - 1))), 2);
 
 	// if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
-	if((notSet || distance[0] < distance[enumToInt(nextSq)]) && (!aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), intToCompass(0))) && (!aRobot.World.getWall(aRobot.x(), aRobot.y(), intToCompass(0))))  {
+	if(aRobot.World.squareExists(aRobot.x(), aRobot.y() + 1) && (notSet || distance[0] < distance[enumToInt(nextSq)]) && (!aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), intToCompass(0))) && (!aRobot.World.getWall(aRobot.x(), aRobot.y(), intToCompass(0))))  {
 		nextSq = intToCompass(0);
 		notSet = false;
 		}
 	// if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
-	if((notSet || distance[1] < distance[enumToInt(nextSq)]) && (!aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), intToCompass(1))) && (!aRobot.World.getWall(aRobot.x(), aRobot.y(), intToCompass(1))))  {
+	if(aRobot.World.squareExists(aRobot.x() + 1, aRobot.y()) && (notSet || distance[1] < distance[enumToInt(nextSq)]) && (!aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), intToCompass(1))) && (!aRobot.World.getWall(aRobot.x(), aRobot.y(), intToCompass(1))))  {
 		nextSq = intToCompass(1);
 		notSet = false;
 		}
 	// if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
-	if((notSet || distance[2] < distance[enumToInt(nextSq)]) && (!aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), intToCompass(2))) && (!aRobot.World.getWall(aRobot.x(), aRobot.y(), intToCompass(2))))  {
+	if(aRobot.World.squareExists(aRobot.x(), aRobot.y() - 1) && (notSet || distance[2] < distance[enumToInt(nextSq)]) && (!aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), intToCompass(2))) && (!aRobot.World.getWall(aRobot.x(), aRobot.y(), intToCompass(2))))  {
 		nextSq = intToCompass(2);
 		notSet = false;
 		}
 	// if no way is viable or this is shorter than the previous shortest viable way and this way is viable, go this way
-	if((notSet || distance[3] < distance[enumToInt(nextSq)]) && (!aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), intToCompass(3))) && (!aRobot.World.getWall(aRobot.x(), aRobot.y(), intToCompass(3))))  {
+	if(aRobot.World.squareExists(aRobot.x() - 1, aRobot.y()) && (notSet || distance[3] < distance[enumToInt(nextSq)]) && (!aRobot.World.getDeadEnd(aRobot.x(), aRobot.y(), intToCompass(3))) && (!aRobot.World.getWall(aRobot.x(), aRobot.y(), intToCompass(3))))  {
 		nextSq = intToCompass(3);
 		notSet = false;
 		}

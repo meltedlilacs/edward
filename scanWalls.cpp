@@ -1,5 +1,6 @@
 #include "scanWalls.h"
 #include "debug.h"
+#include "map.h"
 
 /****************************************
  reads all walls that need to be read,
