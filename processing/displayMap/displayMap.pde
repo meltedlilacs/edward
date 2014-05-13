@@ -7,14 +7,15 @@ int mapWidth = 5;
 int mapHeight = 5;
 int scale = 150;
 
-int x = 0;
-int y = 0;
-int preX = -1;
-int preY = -1;
+int fadeInRate = 10;
+int fadeOutRate = 5;
+
+// rCoordinates[number][0] = x, rCoordinates[number][1] = y
+int rCoordinates[][] = new int[fadeOutRate][2];
 color robotColor = color(65, 144, 232);
 
 // 0 = open, 1 = wall, 2 = dead end, 3 = gone through
-color colors[] = {color(255, 255, 255, 0), color(0, 0, 0), color(232, 16, 29), color(54, 255, 40)};
+color colors[] = {color(255, 255, 255, 0), color(0, 0, 0, fadeInRate), color(232, 16, 29, fadeInRate), color(54, 255, 40, fadeInRate)};
 
 // Maze[x][y][side]
 int Maze[][][] = new int[mapWidth][mapHeight][4];
@@ -39,6 +40,13 @@ void setup() {
         }
       }
     }
+  
+  rCoordinates[0][0] = 0;
+  rCoordinates[0][1] = 0;
+  for(int i = 1; i < fadeOutRate; i++) {
+    rCoordinates[i][0] = -1;
+    rCoordinates[i][1] = -1;
+    }
   }
 
 void draw() {
@@ -53,8 +61,14 @@ void draw() {
       }
     if(input.length() == 6) {
       println(input);
-      x = Character.getNumericValue(input.charAt(0));
-      y = Character.getNumericValue(input.charAt(1));
+      for(int i = fadeOutRate - 1; i > 0; i--) {
+        rCoordinates[i][0] = rCoordinates[i - 1][0];
+        rCoordinates[i][1] = rCoordinates[i - 1][1];
+        }
+      rCoordinates[0][0] = Character.getNumericValue(input.charAt(0));
+      rCoordinates[0][1] = Character.getNumericValue(input.charAt(1));
+      int x = rCoordinates[0][0];
+      int y = rCoordinates[0][1];
       Maze[x][y][0] = Character.getNumericValue(input.charAt(2));
       Maze[x][y][1] = Character.getNumericValue(input.charAt(3));
       Maze[x][y][2] = Character.getNumericValue(input.charAt(4));
@@ -78,13 +92,14 @@ void draw() {
       line(w * scale, (mapHeight - 1 - h) * scale, w * scale, ((mapHeight - 1 - h) + 1) * scale);
       }
     }
-
-  stroke(255);
-  fill(255);
-  ellipse((preX * scale) + (scale / 2), ((mapHeight - 1 - preY) * scale) + (scale / 2), 25, 25);
+  
   stroke(robotColor);
   fill(robotColor);
-  ellipse((x * scale) + (scale / 2), ((mapHeight - 1 - y) * scale) + (scale / 2), 25, 25);
-  preX = x;
-  preY = y;
+  ellipse((rCoordinates[0][0] * scale) + (scale / 2), ((mapHeight - 1 - rCoordinates[0][1]) * scale) + (scale / 2), 25, 25);
+  
+  stroke(255, 225/(fadeOutRate - 1));
+  fill(255, 225/(fadeOutRate - 1));
+  for(int i = 1; i < fadeOutRate; i++) {
+    ellipse((rCoordinates[i][0] * scale) + (scale / 2), ((mapHeight - 1 - rCoordinates[i][1]) * scale) + (scale / 2), 25, 25);
+    }
   }
