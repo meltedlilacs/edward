@@ -6,7 +6,7 @@
 *********************************/
 
 // 0 = no pausing or printing, 1 = pause for important stuff, 2 = pause for everything
-const byte DEBUG = 0;
+const byte DEBUG = 1;
 
 void debug(String print_this, boolean important) {
   if(DEBUG != 0) {

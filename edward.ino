@@ -28,7 +28,7 @@ void loop()  {
   if(Edward.World.getMapped(Edward.x(), Edward.y()) == false)  {
     scanWalls(Edward);
     }
-  debug("Walls at (" + String(Edward.x()) + ", " + String(Edward.y()) + "): [" + String(Edward.World.getWall(Edward.x(), Edward.y(), NORTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), EAST)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), SOUTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), WEST)) + "]");
+  //debug("Walls at (" + String(Edward.x()) + ", " + String(Edward.y()) + "): [" + String(Edward.World.getWall(Edward.x(), Edward.y(), NORTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), EAST)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), SOUTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), WEST)) + "]");
   
   // for processing, of form x y sideone sidetwo sidethree sidefour (no spaces) with 0 = open, 1 = wall, 2 = dead end, 3 = gone through for the sides
   String processing = String(Edward.x()) + String(Edward.y());
@@ -123,7 +123,7 @@ void loop()  {
       }
     }
   
-  debug("Now at (" + String(Edward.x()) + ", " + String(Edward.y()) + ")");
+  //debug("Now at (" + String(Edward.x()) + ", " + String(Edward.y()) + ")");
 
   // the way came has been gone through
   Edward.World.setGoneThrough(Edward.x(), Edward.y(), Edward.backOf());

@@ -25,8 +25,14 @@ int mapWidth = 5;
 int mapHeight = 5;
 int scale = 150;
 
+int x = 0;
+int y = 0;
+int preX = -1;
+int preY = -1;
+int robotColor = color(65, 144, 232);
+
 // 0 = open, 1 = wall, 2 = dead end, 3 = gone through
-int colors[] = {color(255, 255, 255, 0), color(0, 0, 0), color(211, 61, 61), color(83, 209, 69)};
+int colors[] = {color(255, 255, 255, 0), color(0, 0, 0), color(232, 16, 29), color(54, 255, 40)};
 
 // Maze[x][y][side]
 int Maze[][][] = new int[mapWidth][mapHeight][4];
@@ -42,6 +48,7 @@ public void setup() {
   strokeWeight(5);
   strokeCap(SQUARE);
   background(255);
+  fill(robotColor);
   
   for(int w = 0; w < mapWidth; w++) {
     for(int h = 0; h < mapHeight; h++) {
@@ -55,6 +62,7 @@ public void setup() {
 public void draw() {
   if(port.available() > 0) {
     String temp = port.readString();
+    println(temp);
     for(int i = 0; i < temp.length(); i++) {
       int current = Character.getNumericValue(temp.charAt(i));
       if(current >= 0 && current < 4 && input.length() < 6) {
@@ -63,8 +71,8 @@ public void draw() {
       }
     if(input.length() == 6) {
       println(input);
-      int x = Character.getNumericValue(input.charAt(0));
-      int y = Character.getNumericValue(input.charAt(1));
+      x = Character.getNumericValue(input.charAt(0));
+      y = Character.getNumericValue(input.charAt(1));
       Maze[x][y][0] = Character.getNumericValue(input.charAt(2));
       Maze[x][y][1] = Character.getNumericValue(input.charAt(3));
       Maze[x][y][2] = Character.getNumericValue(input.charAt(4));
@@ -88,6 +96,15 @@ public void draw() {
       line(w * scale, (mapHeight - 1 - h) * scale, w * scale, ((mapHeight - 1 - h) + 1) * scale);
       }
     }
+
+  stroke(255);
+  fill(255);
+  ellipse((preX * scale) + (scale / 2), ((mapHeight - 1 - preY) * scale) + (scale / 2), 25, 25);
+  stroke(robotColor);
+  fill(robotColor);
+  ellipse((x * scale) + (scale / 2), ((mapHeight - 1 - y) * scale) + (scale / 2), 25, 25);
+  preX = x;
+  preY = y;
   }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "displayMap" };

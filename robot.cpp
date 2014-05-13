@@ -216,12 +216,13 @@ void Robot::moveForward()  {
       break;
     }
   if(x() == endX() && y() == endY()) {
-    debug("Reached destination (" + String(xPos) + ", " + String(yPos) + ")");
+    //debug("Reached destination (" + String(xPos) + ", " + String(yPos) + ")");
+    debug("Reached destination");
     }
   // if at destination, find next good destination
   while((x() == endX() && y() == endY()) || goals[currentGoal][0] < 0 || goals[currentGoal][1] < 0)  {
     currentGoal++;
-    debug("New goal: " + String(currentGoal));
+    //debug("New goal: " + String(currentGoal));
     if(currentGoal > numberGoals - 1)  { // minus one because currentGoal is zero indexed
       finished = true;
       break;
