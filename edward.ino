@@ -20,7 +20,7 @@ void setup()  {
   Edward.start(7, 9, 3, 11, 750, 775, 2200);
   Edward.stop();
   Edward.Neck.write(90);
-  debug("Press any key to start", true);
+  debug("Press any key to start");
   }
 
 void loop()  {
@@ -29,6 +29,59 @@ void loop()  {
     scanWalls(Edward);
     }
   debug("Walls at (" + String(Edward.x()) + ", " + String(Edward.y()) + "): [" + String(Edward.World.getWall(Edward.x(), Edward.y(), NORTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), EAST)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), SOUTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), WEST)) + "]");
+  
+  // for processing, of form x y sideone sidetwo sidethree sidefour (no spaces) with 0 = open, 1 = wall, 2 = dead end, 3 = gone through for the sides
+  String processing = String(Edward.x()) + String(Edward.y());
+  if(Edward.World.getWall(Edward.x(), Edward.y(), NORTH)) {
+    processing += "1";
+    }
+  else if(Edward.World.getDeadEnd(Edward.x(), Edward.y(), NORTH)) {
+    processing += "2";
+    }
+  else if(Edward.World.getGoneThrough(Edward.x(), Edward.y(), NORTH)) {
+    processing += "3";
+    }
+  else {
+    processing += "0";
+    }
+  if(Edward.World.getWall(Edward.x(), Edward.y(), EAST)) {
+    processing += "1";
+    }
+  else if(Edward.World.getDeadEnd(Edward.x(), Edward.y(), EAST)) {
+    processing += "2";
+    }
+  else if(Edward.World.getGoneThrough(Edward.x(), Edward.y(), EAST)) {
+    processing += "3";
+    }
+  else {
+    processing += "0";
+    }
+  if(Edward.World.getWall(Edward.x(), Edward.y(), SOUTH)) {
+    processing += "1";
+    }
+  else if(Edward.World.getDeadEnd(Edward.x(), Edward.y(), SOUTH)) {
+    processing += "2";
+    }
+  else if(Edward.World.getGoneThrough(Edward.x(), Edward.y(), SOUTH)) {
+    processing += "3";
+    }
+  else {
+    processing += "0";
+    }
+  if(Edward.World.getWall(Edward.x(), Edward.y(), WEST)) {
+    processing += "1";
+    }
+  else if(Edward.World.getDeadEnd(Edward.x(), Edward.y(), WEST)) {
+    processing += "2";
+    }
+  else if(Edward.World.getGoneThrough(Edward.x(), Edward.y(), WEST)) {
+    processing += "3";
+    }
+  else {
+    processing += "0";
+    }
+  Serial.println(processing);
+
   // get best route
   relativeDir nextSq = Edward.compassToRelative(whichWay(Edward));
   debug("Going in direction " + toString(nextSq));

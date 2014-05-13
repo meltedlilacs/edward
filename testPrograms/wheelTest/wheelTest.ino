@@ -108,9 +108,9 @@ void loop()  {
   
   delay(1000);
   
-  Wheels.moveForward();
-  delay(moveTime);
-  Wheels.stop();
+  // Wheels.moveForward();
+  // delay(moveTime);
+  // Wheels.stop();
   
-  delay(1000);
+  // delay(1000);
   }
