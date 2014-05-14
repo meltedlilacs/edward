@@ -144,6 +144,7 @@ public void draw() {
     ellipse((rCoordinates[i][0] * scale) + (scale / 2), ((mapHeight - 1 - rCoordinates[i][1]) * scale) + (scale / 2), scale / 4, scale / 4);
     }
   
+  rect(0, mapHeight * scale, mapWidth * scale, 100);
   stroke(255);
   String dispText = "";
   if(backtracking) {
@@ -156,7 +157,6 @@ public void draw() {
     }
   textAlign(LEFT);
   text(dispText, 50, mapHeight * scale + 50, mapWidth * scale - 50, mapHeight * scale + 50);
-
   dispText = "facing ";
   switch (facing) {
     case 0:

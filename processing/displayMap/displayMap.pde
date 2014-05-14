@@ -40,7 +40,7 @@ void setup() {
   smooth();
   
   //println(Serial.list());
-  String arduinoPort = Serial.list()[0];
+  String arduinoPort = Serial.list()[1];
   port = new Serial(this, arduinoPort, 9600);
   
   strokeWeight(5);
@@ -126,6 +126,7 @@ void draw() {
     ellipse((rCoordinates[i][0] * scale) + (scale / 2), ((mapHeight - 1 - rCoordinates[i][1]) * scale) + (scale / 2), scale / 4, scale / 4);
     }
   
+  rect(0, mapHeight * scale, mapWidth * scale, 100);
   stroke(255);
   String dispText = "";
   if(backtracking) {
@@ -138,7 +139,6 @@ void draw() {
     }
   textAlign(LEFT);
   text(dispText, 50, mapHeight * scale + 50, mapWidth * scale - 50, mapHeight * scale + 50);
-
   dispText = "facing ";
   switch (facing) {
     case 0:
