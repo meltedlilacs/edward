@@ -9,6 +9,7 @@
 #include "debug.h" // what could this be used for?
 #include <Servo.h>  // for motor
 #include "enums.h"
+#include "processing.h"
 
 Robot Edward; // only instance used by main
 
@@ -30,64 +31,7 @@ void loop()  {
     }
   //debug("Walls at (" + String(Edward.x()) + ", " + String(Edward.y()) + "): [" + String(Edward.World.getWall(Edward.x(), Edward.y(), NORTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), EAST)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), SOUTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), WEST)) + "]");
   
-  // for processing, of form x y sideone sidetwo sidethree sidefour facing backtracking (no spaces) with 0 = open, 1 = wall, 2 = dead end, 3 = gone through for the sides
-  String processing = String(Edward.x()) + String(Edward.y());
-  if(Edward.World.getWall(Edward.x(), Edward.y(), NORTH)) {
-    processing += "1";
-    }
-  else if(Edward.World.getDeadEnd(Edward.x(), Edward.y(), NORTH)) {
-    processing += "2";
-    }
-  else if(Edward.World.getGoneThrough(Edward.x(), Edward.y(), NORTH)) {
-    processing += "3";
-    }
-  else {
-    processing += "0";
-    }
-  if(Edward.World.getWall(Edward.x(), Edward.y(), EAST)) {
-    processing += "1";
-    }
-  else if(Edward.World.getDeadEnd(Edward.x(), Edward.y(), EAST)) {
-    processing += "2";
-    }
-  else if(Edward.World.getGoneThrough(Edward.x(), Edward.y(), EAST)) {
-    processing += "3";
-    }
-  else {
-    processing += "0";
-    }
-  if(Edward.World.getWall(Edward.x(), Edward.y(), SOUTH)) {
-    processing += "1";
-    }
-  else if(Edward.World.getDeadEnd(Edward.x(), Edward.y(), SOUTH)) {
-    processing += "2";
-    }
-  else if(Edward.World.getGoneThrough(Edward.x(), Edward.y(), SOUTH)) {
-    processing += "3";
-    }
-  else {
-    processing += "0";
-    }
-  if(Edward.World.getWall(Edward.x(), Edward.y(), WEST)) {
-    processing += "1";
-    }
-  else if(Edward.World.getDeadEnd(Edward.x(), Edward.y(), WEST)) {
-    processing += "2";
-    }
-  else if(Edward.World.getGoneThrough(Edward.x(), Edward.y(), WEST)) {
-    processing += "3";
-    }
-  else {
-    processing += "0";
-    }
-  processing += String(enumToInt(Edward.frontOf()));
-  if(Edward.backtracking == true) {
-    processing += "1";
-    }
-  else {
-    processing += "0";
-    }
-  Serial.println(processing);
+  processing(Edward);
 
   // get best route
   relativeDir nextSq = Edward.compassToRelative(whichWay(Edward));
@@ -137,6 +81,7 @@ void loop()  {
   
   // has robot gotten to all destinations?
   if(Edward.isFinished())  {
+    processing(Edward);
     debug("Reached all goals");
     while(true);
     }

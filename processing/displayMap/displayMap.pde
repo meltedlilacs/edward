@@ -39,8 +39,8 @@ void setup() {
   size(mapWidth * scale, mapHeight * scale + 100);
   smooth();
   
-  //println(Serial.list());
-  String arduinoPort = Serial.list()[1];
+  //println(Serial.list()[32]);
+  String arduinoPort = Serial.list()[32];
   port = new Serial(this, arduinoPort, 9600);
   
   strokeWeight(5);
