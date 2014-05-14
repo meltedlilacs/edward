@@ -70,7 +70,7 @@ void draw() {
     println(temp);
     for(int i = 0; i < temp.length(); i++) {
       int current = Character.getNumericValue(temp.charAt(i));
-      if(current >= 0 && current < 4 && input.length() < 8) {
+      if(current >= 0 && (current < 4 || (input.length() == 0 && current < mapWidth) || (input.length() == 1 && current < mapHeight)) && input.length() < 8) {
         input += current;
         }
       }
