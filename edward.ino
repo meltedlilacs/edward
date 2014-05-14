@@ -30,7 +30,7 @@ void loop()  {
     }
   //debug("Walls at (" + String(Edward.x()) + ", " + String(Edward.y()) + "): [" + String(Edward.World.getWall(Edward.x(), Edward.y(), NORTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), EAST)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), SOUTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), WEST)) + "]");
   
-  // for processing, of form x y sideone sidetwo sidethree sidefour (no spaces) with 0 = open, 1 = wall, 2 = dead end, 3 = gone through for the sides
+  // for processing, of form x y sideone sidetwo sidethree sidefour facing backtracking (no spaces) with 0 = open, 1 = wall, 2 = dead end, 3 = gone through for the sides
   String processing = String(Edward.x()) + String(Edward.y());
   if(Edward.World.getWall(Edward.x(), Edward.y(), NORTH)) {
     processing += "1";
@@ -76,6 +76,13 @@ void loop()  {
     }
   else if(Edward.World.getGoneThrough(Edward.x(), Edward.y(), WEST)) {
     processing += "3";
+    }
+  else {
+    processing += "0";
+    }
+  processing += String(enumToInt(Edward.frontOf()));
+  if(Edward.backtracking == true) {
+    processing += "1";
     }
   else {
     processing += "0";
