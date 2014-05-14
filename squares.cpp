@@ -56,7 +56,7 @@ byte Square::getNumSides() const  {
 boolean Square::setSideMapped(compassDir side) {
   if(sideMapped[enumToInt(side)] != true)  {
     sideMapped[enumToInt(side)] = true;
-    numMapped--;
+    numMapped++;
     if(numMapped == 4) {
       mapped = true;
       }
@@ -91,7 +91,6 @@ boolean Square::getMapped() const {
 boolean Square::setGoneThrough(compassDir side)  {
   if(goneThrough[enumToInt(side)] != true)  {
     goneThrough[enumToInt(side)] = true;
-    numSides--;
     return true;
     }
   return false;

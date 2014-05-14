@@ -38,7 +38,7 @@ void loop()  {
   debug("Going in direction " + toString(nextSq));
   
   // am i backtracking?
-  if(nextSq == BACK)  {
+  if(Edward.World.getNumSides(Edward.x(), Edward.y()) == 1) {
     debug("Now backtracking");
     Edward.backtracking = true;
     }
