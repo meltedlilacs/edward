@@ -327,9 +327,9 @@ html, body {
   font-family: 'Open Sans', sans-serif; }
 
 #home header {
-  background-image: url("edward.jpg");
+  background-image: url("edward_big.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   height: 95%; }
   #home header ul {
     left: 10px;
