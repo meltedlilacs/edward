@@ -183,11 +183,14 @@ footer {
   	}
 	}
 
-.object-wrapper + * {
-	clear: both;
+.object-wrapper {
+	& + * {
+		clear: both;
+		}
 	}
 
 .object {
+	height: 550px;
   border: 2px solid rgb(210, 210, 210);
   @include rowMachine(4, 2%);
   padding: 10px;
