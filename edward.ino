@@ -18,7 +18,7 @@ void setup()  {
   // cannot be initialized in constructor because the constructor
   // is called before the arduino functions work
   // ping, head motor, l motor, r motor, l turn, r turn, move time, l zero, r zero
-  Edward.start(7, 9, 3, 11, 750, 775, 2200);
+  Edward.start(7, 9, 3, 11, 730, 750, 2250);
   Edward.stop();
   Edward.Neck.write(90);
   debug("Press any key to start");
