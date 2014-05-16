@@ -384,7 +384,7 @@ header {
   header #close-video {
     width: 50px;
     height: 50px;
-    position: fixed;
+    position: absolute;
     right: 2%;
     margin-right: -15px;
     top: 2%;
@@ -394,7 +394,7 @@ header {
       cursor: pointer; }
   header video {
     box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.85);
-    position: fixed;
+    position: absolute;
     z-index: -1000000;
     opacity: 0;
     width: 96% !important;
@@ -420,7 +420,7 @@ header {
 
 main {
   width: 100%;
-  padding: 10px; }
+  padding: 20px; }
   main > h1, main > h2, main > h3, main > h4, main > h5, main > h6 {
     clear: both;
     font-family: 'Cutive Mono';
@@ -444,6 +444,9 @@ footer {
     position: absolute;
     right: 10px;
     bottom: 10px; }
+
+.object-wrapper + * {
+  clear: both; }
 
 .object {
   border: 2px solid #d2d2d2;
