@@ -1,7 +1,5 @@
 #!/bin/bash
-cd ~/Documents/Programming/git/edward
-git add .
-DATE=$(date)
-git commit -m "$DATE"
+git add --all
+git commit
 git push
-#./ftp.sh $1
+git push origin --tags

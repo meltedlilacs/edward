@@ -1,0 +1,230 @@
+@import "vars-typeplate";
+@import "typeplate";
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
+a {
+	color: #888;
+	text-decoration: none;
+	-webkit-transition: color 0.35s;
+	-moz-transition: color 0.35s;
+	-ms-transition: color 0.35s;
+	-o-transition: color 0.35s;
+	transition: color 0.35s;
+	&:hover {
+		color: #BBB;
+		}
+	}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: 'Open Sans', sans-serif;
+	}
+
+#home header {
+	background-image: url("edward.jpg");
+	background-size: cover;
+	background-position: center;
+	height: 95%;
+	ul {
+		left: 10px;
+		width: 100%;
+		li:last-child {
+			position: absolute;
+			right: 20px;
+			}
+		}
+	}
+#essay header {
+	height: 55px;
+	background: #222;
+	ul {
+		right: 10px;
+		}
+	}
+
+header {
+	width: 100%;
+	font-family: 'Cutive Mono';
+	nav {
+		a {
+			color: white;
+			text-decoration: none;
+			position: absolute;
+			font-size: 175%;
+			&:first-child {
+				left: 10px;
+				}
+			&:last-child {
+				right: 10px;
+				}
+			}
+		}
+	#hero {
+		font-size: 200%;
+		padding: 10px;
+		width: 700px;
+		text-align: right;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		h1, h3 {
+			margin: 0;
+			padding: 0;
+			color: white;
+			font-weight: 100;
+			}
+		img {
+			margin-top: -41px;
+			float: left;
+			&:hover {
+				cursor: pointer;
+				}
+			}
+		@media all and (max-width: 700px) {
+			width: 100%;
+			text-align: center;
+			img {
+				margin-top: 0;
+				float: none;
+				}
+			}
+		}
+	#close-video {
+		width: 50px;
+		height: 50px;
+		position: fixed;
+		right: 2%;
+		margin-right: -15px;
+		top: 2%;
+		margin-top: -15px;
+		z-index: 10;
+		&:hover {
+			cursor: pointer;
+		}
+		}
+	video {
+		box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.85);
+		position: fixed;
+		z-index: -1000000;
+		opacity: 0;
+  	width: 96% !important;
+  	height: auto !important;
+  	left: 2%;
+  	top: 2%;
+  	-webkit-transition: opacity 0.75s;
+  	-moz-transition: opacity 0.75s;
+  	-ms-transition: opacity 0.75s;
+  	-o-transition: opacity 0.75s;
+  	transition: opacity 0.75s;
+  	&.visible {
+			z-index: 1;
+			opacity: 1;
+	  	}
+		}
+	}
+
+#essay main {
+	max-width: 850px;
+	width: 90%;
+	margin: auto;
+	img {
+		max-width: 35%;
+		height: auto;
+		}
+	}
+main {
+	width: 100%;
+	padding: 10px;
+	& > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+		clear: both;
+		font-family: 'Cutive Mono';
+		font-weight: 100;
+		}
+	#leading {
+		font-size: 150%;
+		font-family: 'Cutive Mono';
+		}
+	}
+
+footer {
+	background: #222;
+	width: 100%;
+	height: 60px;
+	margin-top: 100px;
+	position: relative;
+	a:first-child {
+		position: absolute;
+		left: 10px;
+		bottom: 0;
+		}
+	a:last-child {
+		font-size: 25px;
+		position: absolute;
+		right: 10px;
+		bottom: 10px;
+		}
+	}
+
+@mixin rowMachine($numPerRow, $margin) {
+  width: ((100% - (($numPerRow - 1) * $margin)) / $numPerRow);
+  &:nth-child(n) {
+    margin-bottom: $margin;
+    margin-right: $margin;
+  	}
+  &:nth-child(#{$numPerRow}n) {
+    margin-right: 0;
+    margin-bottom: 0;
+  	}
+	}
+
+.object {
+  border: 2px solid rgb(210, 210, 210);
+  @include rowMachine(4, 2%);
+  padding: 10px;
+  float: left;
+  
+  @media (max-width: 1000px) {
+    @include rowMachine(2, 4%);
+  	}
+
+  @media (max-width: 700px) {
+  	@include rowMachine(1, 8%);
+	  }
+  
+  img {
+    width: 100%;
+    height: auto;
+  	}
+	}
+
+.aside	{
+	float: right;
+	width: 50%;
+	margin: 1em;
+	padding: 1em;
+  border: 2px solid rgb(210, 210, 210);
+	}
+
+.no-display {
+	display: none;
+	}
+
+.alignright	{
+	margin-left: 1em;
+	float: right;
+	}
+
+.alignleft	{
+	margin-right: 1em;
+	float: left;
+	}
+
+.fullwidth {
+	max-width: 100% !important;
+	}

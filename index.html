@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title>EDWARD the Robot</title>
+		<link href='http://fonts.googleapis.com/css?family=Cutive+Mono|Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body id="home">
+    <header>
+			<nav>
+				<a href="essay.html">Essay</a>
+				<a href="http://gabriel-damon.com" target="_blank">Gabriel</a>
+			</nav>
+			<div id="hero">
+				<img src="play.png" />
+				<h1>Meet EDWARD</h1>
+				<h3>he goes through mazes</h3>
+			</div>
+      <img id="close-video" class="no-display" src="close.png" />
+      <video width="320" height="240" controls>
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+  	</header>
+    <main>
+      <p><span id="leading">EDWARD (Electronically Driven Wireless Autonomous Roving Droid) is a robot I began building in 8th grade.</span> He navigates through a maze by mapping out its environment in its mind and using the Pythagorean Theorem to choose the best route. Here are the different components that make up EDWARD:</p>
+      <h1>Electronics</h1>
+      <div>
+        <div class="object">
+          <img alt="The Arduino Uno" src="arduino.jpg"/>
+          <h3 class="delta">Arduino Uno</h3>
+          <p>The brain of EDWARD. Contains the main program and controls everything from driving motors to communicating with the computer.</p>
+        </div>
+        <div class="object">
+          <img  alt="The Ultrasonic Ping))) Sensor" src="ping.png"/>
+          <h3 class="delta">Ultrasonic Ping))) Sensor</h3>
+          <p>EDWARD uses this to map his world and store it in his memory.</p>
+        </div>
+        <div class="object">
+          <img alt="Servo Motor" src="head.jpg"/>
+          <h3 class="delta">HS55 Servo Motor</h3>
+          <p>Moves the ping sensor left and right so that all sides of every square of the maze can be scanned.</p>
+        </div>
+        <div class="object">
+          <img alt="Continous Rotation Servo Motor" src="wheels.png"/>
+          <h3 class="delta">Continous Rotation Servo</h3>
+          <p>Drives the wheels to turn EDWARD, who has a ball-bearing as a third point of contact.</p>
+        </div>
+      </div>
+      <h1>Logic</h1>
+      <img style="width: 100%" src="flow.png" />
+      <h1>Software</h1>
+      </div>
+      <table style="clear: both">
+        <tr>
+          <td colspan = "5">
+            <h3 class="delta">Class Robot</h3>
+            <p>Contains classes that manipulate the physical parts of the robot as well as class Map to remember everything the robot has learned. This class also remembers some things itself.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan = "2">
+            <h3 class="delta">Class Locomotion</h3>
+            <p>Coordinates the two wheels of the robot.</p>
+          </td>
+          <td colspan = "2">
+            <h3 class="delta">Class Motorized Sensor</h3>
+            <p>Syncronizes the ping sensor and the motor on which it is mounted.</p>
+          </td>
+          <td colspan = "1">
+            <h3 class="delta">Class Map</h3>
+            <p>Stores information about the maze. It consists of a grid of Class Squares.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan = "1">
+            <h3 class="delta">Class Motor Right</h3>
+            <p>This motor can turn both directions at varying speeds.</p>
+          </td>
+          <td colspan = "1">
+            <h3 class="delta">Class Motor Left</h3>
+            <p>This motor can turn both directions at varying speeds.</p>
+          </td>
+          <td colspan = "1">
+            <h3 class="delta">Class Ping Sensor</h3>
+            <p>Sends out a pulse of sound. The time it takes to bounce off an object is used to infer the distance to the wall.</p>
+          </td>
+          <td colspan = "1">
+            <h3 class="delta">Class Neck Motor</h3>
+            <p>This motor can only turn 180 degrees, but this is enough for the ping sensor to scan on all sides.</p>
+          </td>
+          <td colspan = "1">
+            <h3 class="delta">Class Square</h3>
+            <p>Keeps track of where walls are; if the square has been mapped yet; if an opening has been passed through by the robot; if an opening leads to a dead-end; and where the square was first entered.</p>
+          </td>
+        </tr>
+      </table>
+
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'edwardtherobot'; // required: replace example with your forum shortname
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+    <footer>
+      <a href="http://makerfaire.com/makers/edward-the-robot/" target="_blank"><img src="http://makerfaire.files.wordpress.com/2013/12/mf14ba_badge_150.png" alt="Maker Faire Bay Area 2014 Web Badge" width="150" height="150" border="0" /></a>
+      <a href="http://gabriel-damon.com" target="_blank">Created by Gabriel Damon</a>
+    </footer>
+  </body>
+</html>
