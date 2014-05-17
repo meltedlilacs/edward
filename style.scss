@@ -87,6 +87,7 @@ header {
 				}
 			}
 		@media all and (max-width: 700px) {
+			top: 40%;
 			width: 100%;
 			text-align: center;
 			img {
@@ -136,6 +137,10 @@ header {
 	img {
 		max-width: 35%;
 		height: auto;
+		@media all and (max-width: 500px) {
+			max-width: 100%;
+			width: 100%;
+			}
 		}
 	}
 main {
@@ -162,6 +167,9 @@ footer {
 		position: absolute;
 		left: 10px;
 		bottom: 0;
+		@media all and (max-width: 500px) {
+			display: none;
+			}
 		}
 	a:last-child {
 		font-size: 25px;
@@ -190,7 +198,7 @@ footer {
 	}
 
 .object {
-	height: 550px;
+	height: 600px;
   border: 2px solid rgb(210, 210, 210);
   @include rowMachine(4, 2%);
   padding: 10px;
@@ -202,6 +210,7 @@ footer {
 
   @media (max-width: 700px) {
   	@include rowMachine(1, 8%);
+  	height: auto;
 	  }
   
   img {
@@ -215,7 +224,10 @@ footer {
 	width: 50%;
 	margin: 1em;
 	padding: 1em;
-  border: 2px solid rgb(210, 210, 210);
+ 	border: 2px solid rgb(210, 210, 210);
+	@media all and (max-width: 500px) {
+		width: 100%;
+		}
 	}
 
 .no-display {
