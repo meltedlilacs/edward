@@ -7,7 +7,7 @@ String input = "";
 
 int mapWidth = 5;
 int mapHeight = 5;
-int scale = 150;
+int scale = 175;
 
 int fadeInRate = 10;
 int fadeOutRate = 5;
@@ -39,8 +39,8 @@ void setup() {
   size(mapWidth * scale, mapHeight * scale + 100);
   smooth();
   
-  //println(Serial.list()[32]);
-  String arduinoPort = Serial.list()[32];
+  println(Serial.list());
+  String arduinoPort = Serial.list()[1];
   port = new Serial(this, arduinoPort, 9600);
   
   strokeWeight(5);
@@ -67,10 +67,9 @@ void setup() {
 void draw() {
   if(port.available() > 0) {
     String temp = port.readString();
-    println(temp);
     for(int i = 0; i < temp.length(); i++) {
       int current = Character.getNumericValue(temp.charAt(i));
-      if(current >= 0 && (current < 4 || (input.length() == 0 && current < mapWidth) || (input.length() == 1 && current < mapHeight)) && input.length() < 8) {
+      if(current >= 0 && current < 10) {
         input += current;
         }
       }

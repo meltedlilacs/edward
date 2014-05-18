@@ -83,9 +83,9 @@ void Locomotion::stop()  {
   }
 
 Locomotion Wheels;
-int rTurn = 900;
-int lTurn = 750;
-int moveTime = 2200;
+int rTurn = 815;
+int lTurn = 655;
+int moveTime = 2250;
 
 void setup()  {
   Wheels.start(3, 11);
