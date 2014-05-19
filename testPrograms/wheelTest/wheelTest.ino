@@ -94,20 +94,20 @@ void setup()  {
   }
   
 void loop()  {
-  // turn right
-  Wheels.turnRight();
-  delay(rTurn);
-  Wheels.stop();
-  
-  delay(1000);
-  
-  // turn left
-  Wheels.turnLeft();
-  delay(lTurn);
-  Wheels.stop();
-  
-  delay(1000);
-  
+//  // turn right
+//  Wheels.turnRight();
+//  delay(rTurn);
+//  Wheels.stop();
+//  
+//  delay(1000);
+//  
+//  // turn left
+//  Wheels.turnLeft();
+//  delay(lTurn);
+//  Wheels.stop();
+//  
+//  delay(1000);
+//  
   // Wheels.moveForward();
   // delay(moveTime);
   // Wheels.stop();

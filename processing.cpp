@@ -6,7 +6,7 @@
 
 // for processing, of form x y sideone sidetwo sidethree sidefour facing backtracking (no spaces) with 0 = open, 1 = wall, 2 = dead end, 3 = gone through for the sides
 void processing(Robot& aRobot) {
-	String processing = String(aRobot.x()) + String(aRobot.y());
+  String processing = String(aRobot.x()) + String(aRobot.y());
   if(aRobot.World.getWall(aRobot.x(), aRobot.y(), NORTH)) {
     processing += "1";
     }
@@ -63,4 +63,4 @@ void processing(Robot& aRobot) {
     processing += "0";
     }
   Serial.println(processing);
-	}
+  }

@@ -22,7 +22,7 @@ void Locomotion::start(byte Lpin, byte Rpin, unsigned int tempLeftTime, unsigned
   }
 
 void Locomotion::moveForward()  {
-  Lservo.write(170);
+  Lservo.write(180);
   Rservo.write(10);
   delay(moveTime);
   stop();

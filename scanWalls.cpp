@@ -9,7 +9,7 @@
 
 void scanWalls(Robot& aRobot)  {
   const unsigned int head_turn_delay = 300;
-  const byte maxDist = 10; // the range between which a wall is adjacent to the robot
+  const byte maxDist = 9; // the range between which a wall is adjacent to the robot
   const byte minDist = 1; // (in inches)
   
   // reset head

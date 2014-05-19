@@ -18,7 +18,7 @@ void setup()  {
   // cannot be initialized in constructor because the constructor
   // is called before the arduino functions work
   // ping, head motor, l motor, r motor, l turn, r turn, move time, l zero, r zero
-  Edward.start(7, 9, 3, 11, 750, 800, 2500);
+  Edward.start(7, 9, 3, 11, 720, 730, 2200);
   Edward.stop();
   Edward.Neck.write(90);
   debug("Press any key to start");
@@ -28,6 +28,10 @@ void loop()  {
   // if the walls haven't been scanned, scan them
   if(Edward.World.getMapped(Edward.x(), Edward.y()) == false)  {
     scanWalls(Edward);
+    }
+  else {
+    // otherwise we need to pause so that we don't skid
+    delay(250);
     }
   //debug("Walls at (" + String(Edward.x()) + ", " + String(Edward.y()) + "): [" + String(Edward.World.getWall(Edward.x(), Edward.y(), NORTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), EAST)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), SOUTH)) + " " + String(Edward.World.getWall(Edward.x(), Edward.y(), WEST)) + "]");
   
