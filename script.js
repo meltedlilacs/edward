@@ -1,10 +1,11 @@
 $("document").ready(function() {
-	$("#hero img").click(function() {
-		$("video").addClass("visible");
-		$("#close-video").removeClass("no-display");
-		});
-	$("#close-video").click(function() {
-		$("video").removeClass("visible");
-		$("#close-video").addClass("no-display");
+	$('#header').videoBG({
+  		mp4:'video.mp4',
+  		ogv:'video.ogv',
+  		webm:'video.webm',
+  		poster:'edward_big.jpg',
+  		scale:true,
+  		autoplay:false,
+  		zIndex:0
 		});
 	});

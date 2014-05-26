@@ -327,16 +327,9 @@ html, body {
   font-family: 'Open Sans', sans-serif; }
 
 #home header {
-  background-image: url("edward_big.jpg");
-  background-size: cover;
-  background-position: center top;
   height: 95%; }
-  #home header ul {
-    left: 10px;
-    width: 100%; }
-    #home header ul li:last-child {
-      position: absolute;
-      right: 20px; }
+  #home header nav {
+    background-color: rgba(0, 0, 0, 0.5); }
 
 #essay header {
   height: 55px;
@@ -347,15 +340,18 @@ html, body {
 header {
   width: 100%;
   font-family: 'Cutive Mono'; }
-  header nav a {
-    color: white;
-    text-decoration: none;
-    position: absolute;
-    font-size: 175%; }
-    header nav a:first-child {
-      left: 10px; }
-    header nav a:last-child {
-      right: 10px; }
+  header nav {
+    width: 100%;
+    height: 55px; }
+    header nav a {
+      color: white;
+      text-decoration: none;
+      position: absolute;
+      font-size: 175%; }
+      header nav a:first-child {
+        left: 10px; }
+      header nav a:last-child {
+        right: 10px; }
   header #hero {
     font-size: 200%;
     padding: 10px;
@@ -382,34 +378,10 @@ header {
         header #hero img {
           margin-top: 0;
           float: none; } }
-  header #close-video {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    right: 2%;
-    margin-right: -15px;
-    top: 2%;
-    margin-top: -15px;
-    z-index: 10; }
-    header #close-video:hover {
-      cursor: pointer; }
-  header video {
-    box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.85);
-    position: absolute;
-    z-index: -1000000;
-    opacity: 0;
-    width: 96% !important;
-    height: auto !important;
-    left: 2%;
-    top: 2%;
-    -webkit-transition: opacity 0.75s;
-    -moz-transition: opacity 0.75s;
-    -ms-transition: opacity 0.75s;
-    -o-transition: opacity 0.75s;
-    transition: opacity 0.75s; }
-    header video.visible {
-      z-index: 1;
-      opacity: 1; }
+    header #hero video {
+      position: absolute;
+      left: 0;
+      z-index: -100; }
 
 #essay main {
   max-width: 850px;
